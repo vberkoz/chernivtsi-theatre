@@ -9,9 +9,17 @@ const sans = Noto_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
+import { Noto_Serif_Display } from "@next/font/google";
+const serif = Noto_Serif_Display({
+  subsets: ["latin", "cyrillic"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${sans.variable} font-sans`}>
+    <main className={`${sans.variable} ${serif.variable} font-sans`}>
       <Component {...pageProps} />
     </main>
   )

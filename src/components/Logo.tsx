@@ -1,6 +1,6 @@
 export default function Logo() {
   return (
-    <svg className="m-auto fill-gray-900 dark:fill-gray-100" viewBox="0 0 500 500" width={36} height={36} xmlns="http://www.w3.org/2000/svg">
+    <svg className="m-auto fill-zinc-100 hover:fill-red-700" viewBox="0 0 500 500" width={36} height={36} xmlns="http://www.w3.org/2000/svg">
       <defs></defs>
       <path
         fillRule="evenodd"

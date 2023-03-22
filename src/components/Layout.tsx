@@ -21,7 +21,7 @@ export default function Layout({ children }: Props) {
         <Menu />
         {/* <Banner /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

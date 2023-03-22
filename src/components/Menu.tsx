@@ -3,39 +3,18 @@ import { useState } from "react";
 
 import Logo from "./Logo";
 
-const primaryItems: { en: string; uk: string }[] = [
-  { en: "Affiche", uk: "Афіша" },
-  { en: "Repertoire", uk: "Репертуар" },
-  { en: "Artists & Staff", uk: "Актори та Персонал" },
-  { en: "News", uk: "Новини" },
-];
-
-const secondaryItems = [
-  { en: "Festival", uk: "Фестиваль" },
-  { en: "Vacancies", uk: "Вакансії" },
-  { en: "Contact Us", uk: "Контакти" },
-  { en: "About Us", uk: "Про Нас" },
-];
-
-const menu = {
-  open: { en: "MENU", uk: "МЕНЮ" },
-  close: { en: "CLOSE", uk: "ЗАКРИТИ" },
-}
+const primaryItems = ["Афіша", "Репертуар", "Актори та Персонал", "Новини"];
+const secondaryItems = ["Фестиваль", "Вакансії", "Контакти", "Про Нас"];
 
 export default function Menu() {
   const [opened, setOpened] = useState(false);
-  const [lang, setLang] = useState("en");
 
   const toggleMenu = () => {
     setOpened(!opened);
   };
 
-  const toggleLang = () => {
-    lang === "en" ? setLang("uk") : setLang("en");
-  };
-
   return (
-    <div className="font-serif sticky top-0 bg-black">
+    <div className="font-serif sticky top-0 bg-black z-20">
       <div
         className={`${
           opened ? "flex" : "hidden"
@@ -43,26 +22,28 @@ export default function Menu() {
       >
         <div className="grid lg:grid-cols-4 h-full">
           <div className="hidden lg:block"></div>
-          <div className="col-span-3 flex flex-col justify-around">
-            <div className="flex flex-col">
+
+          <div className="col-span-3 flex flex-col px-7">
+            <div className="flex flex-col mb-4">
               {primaryItems.map((item, key) => (
                 <Link
                   key={key}
                   href="#"
-                  className="uppercase text-5xl pl-4 py-1"
+                  className="uppercase text-5xl py-2 hover:text-red-700"
                 >
-                  {lang === "en" ? item.en : item.uk}
+                  {item}
                 </Link>
               ))}
             </div>
+
             <div className="flex flex-col">
               {secondaryItems.map((item, key) => (
                 <Link
                   key={key}
                   href="#"
-                  className="uppercase pl-4 py-1 text-2xl"
+                  className="uppercase text-2xl py-1 hover:text-red-700"
                 >
-                  {lang === "en" ? item.en : item.uk}
+                  {item}
                 </Link>
               ))}
             </div>
@@ -70,57 +51,61 @@ export default function Menu() {
         </div>
       </div>
 
-      <div className="flex items-center lg:hidden">
-        <div className="flex w-24 pl-4">
-          <button
-            className="uppercase hover:cursor-pointer text-left"
-            onClick={toggleLang}
-          >
-            {lang === "en" ? "uk" : "en"}
-          </button>
-        </div>
-        <div className="grow">
+      <div className="flex items-center lg:hidden border-b border-zinc-800">
+        <div className="flex w-32 pl-7">
           <Link href="/">
             <Logo />
           </Link>
+          <div className="grow"></div>
         </div>
-        <button
-          className="uppercase p-4 mr-2 hover:cursor-pointer"
-          onClick={toggleMenu}
-        >
-          {opened ? (lang === "en" ? menu.close.en : menu.close.uk) : (lang === "en" ? menu.open.en : menu.open.uk)}
-        </button>
+
+        <div className="grow"></div>
+
+        <div className="flex w-32">
+          <div className="grow"></div>
+          <button
+            className="uppercase hover:cursor-pointer py-4 pl-4 pr-7"
+            onClick={toggleMenu}
+          >
+            {opened ? "ЗАКРИТИ" : "МЕНЮ"}
+          </button>
+        </div>
       </div>
 
       <div className="hidden border-b border-zinc-800 lg:flex">
-        <Link href="/" className="flex items-center pl-4">
-          <Logo />
-        </Link>
+        <div className="flex items-center w-32">
+          <Link href="/" className="pl-7">
+            <Logo />
+          </Link>
+        </div>
+
         <div className="grow"></div>
+
         <div className="flex items-center">
           {primaryItems.map((item, key) => (
             <Link
               key={key}
               href="#"
-              className={`${opened ? "hidden" : "block"} uppercase p-4 hover:text-red-700`}
+              className={`${
+                opened ? "hidden" : "block"
+              } uppercase p-4 hover:text-red-700`}
             >
-              {lang === "en" ? item.en : item.uk}
+              {item}
             </Link>
           ))}
         </div>
+
         <div className="grow"></div>
-        <button
-          className="uppercase p-4 hover:cursor-pointer hover:text-red-700"
-          onClick={toggleLang}
-        >
-          {lang === "en" ? "uk" : "en"}
-        </button>
-        <button
-          className="uppercase p-4 mr-2 hover:cursor-pointer hover:text-red-700"
-          onClick={toggleMenu}
-        >
-          {opened ? (lang === "en" ? menu.close.en : menu.close.uk) : (lang === "en" ? menu.open.en : menu.open.uk)}
-        </button>
+
+        <div className="flex w-32">
+          <div className="grow"></div>
+          <button
+            className="uppercase py-4 pl-4 pr-7 hover:cursor-pointer hover:text-red-700"
+            onClick={toggleMenu}
+          >
+            {opened ? "ЗАКРИТИ" : "МЕНЮ"}
+          </button>
+        </div>
       </div>
     </div>
   );

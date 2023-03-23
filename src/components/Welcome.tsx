@@ -7,7 +7,11 @@ export default function Welcome() {
   return (
     <div>
       <div
-        className="border-b border-zinc-800 w-full h-[calc(75vh-60px)] bg-[length:300%] sm:bg-[length:200%] md:bg-[length:150%] lg:bg-[length:100%]"
+        className="
+        border-b border-zinc-800 
+        w-full h-[calc(75vh-60px)] 
+        bg-[length:300%] sm:bg-[length:200%] md:bg-[length:150%] lg:bg-[length:100%]
+        "
         style={{
           backgroundImage: `url(${welcome.src})`,
           backgroundPosition: "center",
@@ -23,7 +27,11 @@ export default function Welcome() {
       ></div>
       
       <div
-        className="absolute top-[60px] w-full h-[calc(75vh-60px)] bg-[length:200%] sm:bg-[length:150%] md:bg-[length:100%] lg:bg-[length:80%] xl:bg-[length:60%]"
+        className="
+        absolute top-[60px] 
+        w-full h-[calc(75vh-60px)] 
+        bg-[length:200%] sm:bg-[length:150%] md:bg-[length:100%] lg:bg-[length:80%] xl:bg-[length:60%]
+        "
         style={{
           backgroundImage: `url(${logo.src})`,
           backgroundPosition: "center 25%",

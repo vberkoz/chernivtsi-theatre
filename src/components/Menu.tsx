@@ -52,7 +52,7 @@ export default function Menu() {
       </div>
 
       <div className="flex items-center lg:hidden border-b border-zinc-800">
-        <div className="flex w-32 pl-7">
+        <div className="flex w-32 pl-4">
           <Link href="/">
             <Logo />
           </Link>
@@ -74,7 +74,7 @@ export default function Menu() {
 
       <div className="hidden border-b border-zinc-800 lg:flex">
         <div className="flex items-center w-32">
-          <Link href="/" className="pl-7">
+          <Link href="/" className="pl-4">
             <Logo />
           </Link>
         </div>

@@ -44,7 +44,7 @@ export default function Premiere({ data }: Props) {
       ></div>
 
       <div
-        className={`flex p-7 w-full h-[50vh] bg-[length:150%] ${
+        className={`flex p-4 w-full h-[50vh] bg-[length:150%] ${
           data.doubleWidth ? "lg:bg-[length:100%]" : "lg:bg-[length:175%]"
         } `}
         style={{

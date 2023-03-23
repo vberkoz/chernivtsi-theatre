@@ -10,6 +10,7 @@ import weekendForThree from "public/weekendForThree.webp";
 import volodymyrShnayder from "public/volodymyrShnayder.webp";
 import Premiere from "@/components/Premiere";
 import Staff from "@/components/Staff";
+import Event from "@/components/Event";
 
 export default function Home() {
   return (
@@ -53,11 +54,13 @@ export default function Home() {
           }}
         />
 
-        <Staff data={{
-          title: "Володимир Шнайдер",
-          position: "Головний Диригент",
-          image: volodymyrShnayder,
-        }} />
+        <Staff
+          data={{
+            title: "Володимир Шнайдер",
+            position: "Головний Диригент",
+            image: volodymyrShnayder,
+          }}
+        />
 
         <Premiere
           data={{
@@ -80,6 +83,54 @@ export default function Home() {
             href: "#",
             image: auntyForAMillion,
             doubleWidth: true,
+            rightBorder: false,
+          }}
+        />
+
+        <div className="py-4 font-serif bg-black border-b border-zinc-800 flex flex-col items-center col-span-1 md:col-span-2 lg:col-span-4">
+          <div className="uppercase">Найближчі вистави</div>
+        </div>
+        <Event
+          data={{
+            type: "комедія",
+            title: "Габріель",
+            image: gabrielle,
+            href: "#",
+            date: "18 Січня",
+            time: "19:00",
+            rightBorder: true,
+          }}
+        />
+        <Event
+          data={{
+            type: "драматична поема",
+            title: "Ніч на полонині",
+            image: nightOnTheMeadow,
+            href: "#",
+            date: "19 Січня",
+            time: "19:00",
+            rightBorder: true,
+          }}
+        />
+        <Event
+          data={{
+            type: "комедія",
+            title: "Габріель",
+            image: gabrielle,
+            href: "#",
+            date: "20 Січня",
+            time: "18:00",
+            rightBorder: true,
+          }}
+        />
+        <Event
+          data={{
+            type: "комедія на 2 дії",
+            title: "Вікенд на трьох",
+            image: weekendForThree,
+            href: "#",
+            date: "20 Січня",
+            time: "20:00",
             rightBorder: false,
           }}
         />

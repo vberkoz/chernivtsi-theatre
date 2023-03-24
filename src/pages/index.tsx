@@ -11,6 +11,7 @@ import volodymyrShnayder from "public/volodymyrShnayder.webp";
 import Premiere from "@/components/Premiere";
 import Staff from "@/components/Staff";
 import Event from "@/components/Event";
+import Partners from "@/components/Partners";
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
             href: "#",
             image: gabrielle,
             doubleWidth: true,
-            rightBorder: true,
+            topOverlayClass: "md:border-r",
           }}
         />
 
@@ -38,7 +39,7 @@ export default function Home() {
             href: "#",
             image: nightOnTheMeadow,
             doubleWidth: false,
-            rightBorder: true,
+            topOverlayClass: "md:border-r-0 lg:border-r",
           }}
         />
 
@@ -50,7 +51,7 @@ export default function Home() {
             href: "#",
             image: weekendForThree,
             doubleWidth: false,
-            rightBorder: false,
+            topOverlayClass: "md:border-r lg:border-r-0",
           }}
         />
 
@@ -59,6 +60,7 @@ export default function Home() {
             title: "Володимир Шнайдер",
             position: "Головний Диригент",
             image: volodymyrShnayder,
+            topOverlayClass: "md:border-r-0 lg:border-r",
           }}
         />
 
@@ -71,7 +73,7 @@ export default function Home() {
             href: "#",
             image: betrayMe,
             doubleWidth: false,
-            rightBorder: true,
+            topOverlayClass: "md:border-r",
           }}
         />
 
@@ -83,7 +85,7 @@ export default function Home() {
             href: "#",
             image: auntyForAMillion,
             doubleWidth: true,
-            rightBorder: false,
+            topOverlayClass: "",
           }}
         />
 
@@ -98,7 +100,7 @@ export default function Home() {
             href: "#",
             date: "18 Січня",
             time: "19:00",
-            rightBorder: true,
+            topOverlayClass: "md:border-r",
           }}
         />
         <Event
@@ -109,7 +111,7 @@ export default function Home() {
             href: "#",
             date: "19 Січня",
             time: "19:00",
-            rightBorder: true,
+            topOverlayClass: "md:border-r-0 lg:border-r",
           }}
         />
         <Event
@@ -120,7 +122,7 @@ export default function Home() {
             href: "#",
             date: "20 Січня",
             time: "18:00",
-            rightBorder: true,
+            topOverlayClass: "md:border-r",
           }}
         />
         <Event
@@ -131,9 +133,10 @@ export default function Home() {
             href: "#",
             date: "20 Січня",
             time: "20:00",
-            rightBorder: false,
+            topOverlayClass: "",
           }}
         />
+        <Partners />
       </div>
     </Layout>
   );

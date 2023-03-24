@@ -9,16 +9,14 @@ type Props = {
     href: string;
     date: string;
     time: string;
-    rightBorder: boolean;
+    topOverlayClass: string;
   };
 };
 
 export default function Event({ data }: Props) {
   return (
     <div
-      className={`p-4 text-center border-b ${
-        data.rightBorder && "md:border-r"
-      } border-zinc-800 h-[50vh] flex flex-col`}
+      className={`p-4 text-center border-b ${data.topOverlayClass} border-zinc-800 h-[50vh] flex flex-col`}
     >
       <div className="font-thin">
         <p>{data.date}</p>

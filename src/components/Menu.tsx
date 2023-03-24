@@ -23,7 +23,7 @@ export default function Menu() {
         <div className="grid lg:grid-cols-4 h-full">
           <div className="hidden lg:block"></div>
 
-          <div className="col-span-3 flex flex-col px-7">
+          <div className="col-span-3 flex flex-col px-4">
             <div className="flex flex-col mb-4">
               {primaryItems.map((item, key) => (
                 <Link

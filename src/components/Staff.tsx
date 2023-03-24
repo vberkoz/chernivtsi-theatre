@@ -6,19 +6,21 @@ type Props = {
     title: string;
     position: string;
     image: StaticImageData;
+    topOverlayClass: string;
   };
 };
 
 export default function Staff({ data }: Props) {
   return (
     <div 
-      className="
+      className={`
       col-span-1 lg:col-span-1 p-7 
       flex flex-col items-center 
       text-zinc-100 
       bg-black 
-      border-b md:border-r border-zinc-800
-      "
+      border-b border-zinc-800
+      ${data.topOverlayClass}
+      `}
     >
       <p className="font-sans font-thin text-lg">Актори та Персонал</p>
       <div className="grow min-h-[8px]"></div>

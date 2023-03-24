@@ -10,7 +10,7 @@ type Props = {
     href: string;
     image: StaticImageData;
     doubleWidth: boolean;
-    rightBorder: boolean;
+    topOverlayClass: string;
   };
 };
 
@@ -34,9 +34,7 @@ export default function Premiere({ data }: Props) {
       <div
         className={`absolute w-full ${
           data.doubleWidth ? "md:w-[50%]" : "md:w-[50%] lg:w-[25%]"
-        } h-[50vh] border-b ${
-          data.rightBorder && "md:border-r"
-        } border-zinc-800`}
+        } h-[50vh] border-b border-zinc-800 ${data.topOverlayClass}`}
         style={{
           background:
             "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 100%)",

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Props = {
   data: {
     date: string;
@@ -10,10 +12,11 @@ type Props = {
 
 export default function Post({ data }: Props) {
   return (
-    <div 
+    <Link
+      href="#"
       className={`
       flex flex-col justify-between 
-      border-b ${data.containerClass} border-zinc-800 p-4
+      border-b ${data.containerClass} border-zinc-800 p-4 group
       `}
     >
       <div className="flex flex-row">
@@ -22,9 +25,9 @@ export default function Post({ data }: Props) {
       </div>
       <div className="grow min-h-[5vh]"></div>
       <div>
-        <h2 className="font-serif text-2xl my-4">{data.title}</h2>
+        <h2 className="font-serif text-2xl my-4 group-hover:text-red-600">{data.title}</h2>
         <p className="font-thin">{data.excerpt}</p>
       </div>
-    </div>
+    </Link>
   );
 }

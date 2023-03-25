@@ -11,17 +11,16 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Head>
-        <title>Chernivtsi Drama Theatre</title>
-        <meta name="description" content="Chernivtsi Drama Theatre" />
+        <title>Чернівецький академічний обласний український музично-драматичний театр ім. Ольги Кобилянської</title>
+        <meta name="description" content="Чернівецький академічний обласний український музично-драматичний театр ім. Ольги Кобилянської" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <link rel="icon" href="logo.svg" type="image/svg+xml" /> */}
+        <link rel="icon" href="logo.svg" type="image/svg+xml" />
       </Head>
   
       <div>
         <Menu />
-        {/* <Banner /> */}
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

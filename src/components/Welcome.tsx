@@ -5,7 +5,7 @@ import logo from "public/logo.png";
 
 export default function Welcome() {
   return (
-    <div>
+    <Link href="#">
       <div
         className="
         border-b border-zinc-800 
@@ -38,6 +38,6 @@ export default function Welcome() {
           backgroundRepeat: "no-repeat",
         }}
       ></div>
-    </div>
+    </Link>
   );
 }

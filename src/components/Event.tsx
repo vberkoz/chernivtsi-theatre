@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -50,7 +50,9 @@ export default function Event({ data }: Props) {
       <div className="grow min-h-[8px]"></div>
       <div className="">
         <p className="font-thin">{data.type}</p>
-        <p className="font-serif uppercase text-2xl group-hover:text-red-600">{data.title}</p>
+        <p className="font-serif uppercase text-2xl group-hover:text-red-600">
+          {data.title}
+        </p>
       </div>
     </Link>
   );

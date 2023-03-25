@@ -15,20 +15,20 @@ type Props = {
 
 export default function Event({ data }: Props) {
   return (
-    <div
-      className={`p-4 text-center border-b ${data.topOverlayClass} border-zinc-800 h-[50vh] flex flex-col`}
+    <Link
+      href={data.href}
+      className={`p-4 text-center border-b ${data.topOverlayClass} border-zinc-800 h-[50vh] flex flex-col group`}
     >
       <div className="font-thin">
         <p>{data.date}</p>
         <p>{data.time}</p>
       </div>
       <div className="grow min-h-[8px]"></div>
-      <Link
-        href={data.href}
+      <div
         className="
         m-auto p-2
         flex flex-col items-center 
-        border border-zinc-800 rounded-t-full hover:bg-red-700 outline-none
+        border border-zinc-800 rounded-t-full group-hover:bg-red-600 outline-none
         landscape:w-[calc(8vw+20px)] landscape:h-[calc(20vh+10px)]
         portrait:w-[calc(25vw+20px)] portrait:h-[calc(20vh+10px)]
         "
@@ -46,12 +46,12 @@ export default function Event({ data }: Props) {
             backgroundRepeat: "no-repeat",
           }}
         ></div>
-      </Link>
+      </div>
       <div className="grow min-h-[8px]"></div>
       <div className="">
         <p className="font-thin">{data.type}</p>
-        <p className="font-serif uppercase text-2xl">{data.title}</p>
+        <p className="font-serif uppercase text-2xl group-hover:text-red-600">{data.title}</p>
       </div>
-    </div>
+    </Link>
   );
 }

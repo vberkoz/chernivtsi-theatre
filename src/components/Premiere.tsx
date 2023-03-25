@@ -16,8 +16,9 @@ type Props = {
 
 export default function Premiere({ data }: Props) {
   return (
-    <div
-      className={`col-span-1 ${
+    <Link
+      href={data.href}
+      className={`col-span-1 group ${
         data.doubleWidth ? "lg:col-span-2" : "lg:col-span-1"
       }`}
     >
@@ -57,24 +58,18 @@ export default function Premiere({ data }: Props) {
               <span className="whitespace-nowrap">{data.typeRow2}</span>
             )}
           </p>
-          <Link
-            href={data.href}
-            className="font-serif text-4xl text-zinc-100 uppercase hover:text-red-700"
-          >
+          <div className="font-serif text-4xl text-zinc-100 uppercase group-hover:text-red-700">
             {data.title}
-          </Link>
+          </div>
           <div className="grow"></div>
           <p className="font-sans font-thin text-lg text-zinc-100 mb-2">
             {data.date}
           </p>
-          <Link
-            href={data.href}
-            className="font-serif text-zinc-100 uppercase bg-red-900 hover:bg-red-700 rounded-full py-1 px-4 max-w-fit"
-          >
+          <button className="font-serif text-zinc-100 uppercase bg-red-900 hover:bg-red-600 rounded-full py-1 px-4 max-w-fit">
             Придбати Квиток
-          </Link>
+          </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

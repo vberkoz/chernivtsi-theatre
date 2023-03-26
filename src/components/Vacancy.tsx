@@ -3,10 +3,7 @@ import { StaticImageData } from "next/image";
 
 type Props = {
   data: {
-    typeRow1: string;
-    typeRow2?: string;
     title: string;
-    date: string;
     href: string;
     image: StaticImageData;
     doubleWidth: boolean;
@@ -52,22 +49,9 @@ export default function Premiere({ data }: Props) {
         }}
       >
         <div className="flex flex-col z-10">
-          <p className="font-sans font-thin text-lg text-zinc-100">
-            <span>{data.typeRow1} </span>
-            {data.typeRow1 && (
-              <span className="whitespace-nowrap">{data.typeRow2}</span>
-            )}
-          </p>
-          <div className="font-serif text-4xl text-zinc-100 uppercase group-hover:text-red-700">
+          <div className={`font-serif text-xl text-zinc-100 uppercase group-hover:text-red-700 ${data.doubleWidth && "md:w-1/2"}`}>
             {data.title}
           </div>
-          <div className="grow"></div>
-          <p className="font-sans font-thin text-lg text-zinc-100 mb-2">
-            {data.date}
-          </p>
-          <button className="font-serif text-zinc-100 uppercase bg-red-900 hover:bg-red-600 rounded-full py-1 px-4 max-w-fit">
-            Придбати Квиток
-          </button>
         </div>
       </div>
     </Link>

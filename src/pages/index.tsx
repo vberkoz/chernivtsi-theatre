@@ -7,12 +7,17 @@ import auntyForAMillion from "public/auntyForAMillion.webp";
 import betrayMe from "public/betrayMe.webp";
 import weekendForThree from "public/weekendForThree.webp";
 
+import choirmasterPhoto from "public/vacancy/choirmasterPhoto.webp";
+import directorProducerPhoto from "public/vacancy/directorProducerPhoto.webp";
+import productionDesignerPhoto from "public/vacancy/productionDesignerPhoto.webp";
+
 import volodymyrShnayder from "public/volodymyrShnayder.webp";
 import Premiere from "@/components/Premiere";
 import Staff from "@/components/Staff";
 import Event from "@/components/Event";
 import Partners from "@/components/Partners";
 import Post from "@/components/Post";
+import Vacancy from "@/components/Vacancy";
 
 export default function Home() {
   return (
@@ -28,7 +33,7 @@ export default function Home() {
             href: "#",
             image: gabrielle,
             doubleWidth: true,
-            topOverlayClass: "md:border-r",
+            topOverlayClass: "lg:border-r",
           }}
         />
 
@@ -40,7 +45,7 @@ export default function Home() {
             href: "#",
             image: nightOnTheMeadow,
             doubleWidth: false,
-            topOverlayClass: "md:border-r-0 lg:border-r",
+            topOverlayClass: "md:border-r",
           }}
         />
 
@@ -52,7 +57,7 @@ export default function Home() {
             href: "#",
             image: weekendForThree,
             doubleWidth: false,
-            topOverlayClass: "md:border-r lg:border-r-0",
+            topOverlayClass: "",
           }}
         />
 
@@ -61,7 +66,7 @@ export default function Home() {
             title: "Володимир Шнайдер",
             position: "Головний Диригент",
             image: volodymyrShnayder,
-            topOverlayClass: "md:border-r-0 lg:border-r",
+            topOverlayClass: "md:border-r",
           }}
         />
 
@@ -74,7 +79,7 @@ export default function Home() {
             href: "#",
             image: betrayMe,
             doubleWidth: false,
-            topOverlayClass: "md:border-r",
+            topOverlayClass: "lg:border-r",
           }}
         />
 
@@ -139,6 +144,37 @@ export default function Home() {
         />
 
         <Partners />
+
+        <div className="py-4 font-serif bg-black border-b border-zinc-800 flex flex-col items-center col-span-1 md:col-span-2 lg:col-span-4">
+          <div className="uppercase">Вакансії</div>
+        </div>
+        <Vacancy
+          data={{
+            title: "Художник-постановник театрально-виконавчого закладу",
+            href: "#",
+            image: productionDesignerPhoto,
+            doubleWidth: true,
+            topOverlayClass: "lg:border-r",
+          }}
+        />
+        <Vacancy
+          data={{
+            title: "Хормейстер",
+            href: "#",
+            image: choirmasterPhoto,
+            doubleWidth: false,
+            topOverlayClass: "md:border-r",
+          }}
+        />
+        <Vacancy
+          data={{
+            title: "Режисер-постановник",
+            href: "#",
+            image: directorProducerPhoto,
+            doubleWidth: false,
+            topOverlayClass: "",
+          }}
+        />
 
         <div className="py-4 font-serif bg-black border-b border-zinc-800 flex flex-col items-center col-span-1 md:col-span-2 lg:col-span-4">
           <div className="uppercase">Новини</div>

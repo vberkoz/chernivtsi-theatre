@@ -49,7 +49,7 @@ export default function Premiere({ data }: Props) {
         }}
       >
         <div className="flex flex-col z-10">
-          <div className={`font-serif text-xl text-zinc-100 uppercase group-hover:text-red-700 ${data.doubleWidth && "w-1/2"}`}>
+          <div className={`font-serif text-xl text-zinc-100 uppercase group-hover:text-red-700 ${data.doubleWidth && "md:w-1/2"}`}>
             {data.title}
           </div>
         </div>

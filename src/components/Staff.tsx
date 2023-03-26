@@ -39,7 +39,7 @@ export default function Staff({ data }: Props) {
         />
       </div>
       <div className="grow min-h-[8px]"></div>
-      <p className="font-serif font-semibold text-3xl lg:text-4xl uppercase mb-2 text-center group-hover:text-red-700">
+      <p className="font-serif text-xl lg:text-2xl uppercase mb-2 text-center group-hover:text-red-700">
         {data.title}
       </p>
       <p className="font-sans font-thin text-lg">{data.position}</p>

@@ -19,12 +19,12 @@ export default function Premiere({ data }: Props) {
     <Link
       href={data.href}
       className={`col-span-1 group ${
-        data.doubleWidth ? "lg:col-span-2" : "lg:col-span-1"
+        data.doubleWidth ? "md:col-span-2" : "md:col-span-1"
       }`}
     >
       <div
         className={`absolute w-full ${
-          data.doubleWidth ? "md:w-[50%]" : "md:w-[50%] lg:w-[25%]"
+          data.doubleWidth ? "lg:w-[50%]" : "md:w-[50%] lg:w-[25%]"
         } h-[50vh]`}
         style={{
           background:
@@ -34,7 +34,7 @@ export default function Premiere({ data }: Props) {
 
       <div
         className={`absolute w-full ${
-          data.doubleWidth ? "md:w-[50%]" : "md:w-[50%] lg:w-[25%]"
+          data.doubleWidth ? "lg:w-[50%]" : "md:w-[50%] lg:w-[25%]"
         } h-[50vh] border-b border-zinc-800 ${data.topOverlayClass}`}
         style={{
           background:

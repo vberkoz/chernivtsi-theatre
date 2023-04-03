@@ -1,18 +1,30 @@
-import { useSession } from "next-auth/react";
-import HeaderNav from "@/components/HeaderNav";
+import { GetServerSideProps } from "next";
 
-export default function Dashboard() {
-  const { data: session } = useSession();
-  return (
-    <div className="font-admin text-sm text-zinc-100 bg-zinc-900">
-      <HeaderNav />
-      {session && (
-        <div className="p-8 text-lg h-[150vh] flex flex-col">
-          <div>Головна панель</div>
-          <div className="grow"></div>
-          <div>Головна панель</div>
-        </div>
-      )}
-    </div>
-  );
+import NavLayout from "@/components/admin/NavLayout";
+
+import { nav as navItems } from "@/data/nav";
+
+type Props = {
+  data: {
+    navItems: {
+      name: string;
+      href: string;
+    }[];
+  };
+};
+
+export default function Dashboard({ data }: Props) {
+  const navLayout = {
+    navItems: data.navItems,
+    children: <div className="px-4 py-3">Головна панель</div>,
+  };
+
+  return <NavLayout data={navLayout} />;
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = {
+    navItems,
+  };
+  return { props: { data } };
+};

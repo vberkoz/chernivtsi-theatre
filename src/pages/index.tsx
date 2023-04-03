@@ -1,5 +1,5 @@
-import Layout from "@/components/Layout";
-import Welcome from "@/components/Welcome";
+import Layout from "@/components/website/Layout";
+import Welcome from "@/components/website/Welcome";
 
 import nightOnTheMeadow from "public/nightOnTheMeadow.webp";
 import gabrielle from "public/gabrielle.webp";
@@ -12,12 +12,12 @@ import directorProducerPhoto from "public/vacancy/directorProducerPhoto.webp";
 import productionDesignerPhoto from "public/vacancy/productionDesignerPhoto.webp";
 
 import volodymyrShnayder from "public/volodymyrShnayder.webp";
-import Premiere from "@/components/Premiere";
-import Staff from "@/components/Staff";
-import Event from "@/components/Event";
-import Partners from "@/components/Partners";
-import Post from "@/components/Post";
-import Vacancy from "@/components/Vacancy";
+import Premiere from "@/components/website/Premiere";
+import Staff from "@/components/website/Staff";
+import Event from "@/components/website/Event";
+import Partners from "@/components/website/Partners";
+import Post from "@/components/website/Post";
+import Vacancy from "@/components/website/Vacancy";
 
 export default function Home() {
   return (

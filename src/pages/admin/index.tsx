@@ -16,7 +16,7 @@ type Props = {
 export default function Dashboard({ data }: Props) {
   const navLayout = {
     navItems: data.navItems,
-    children: <div className="px-4 py-3">Головна панель</div>,
+    children: <div className="px-4 py-3 text-2xl">Головна панель</div>,
   };
 
   return <NavLayout data={navLayout} />;

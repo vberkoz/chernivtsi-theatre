@@ -1,9 +1,9 @@
-import { Spectacle } from "@/pages/admin/[page]/[id]";
+import { Item } from "@/pages/admin/[page]/[id]";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 type Props = {
-  items: Spectacle[];
+  items: Item[];
 };
 
 export default function List({ items }: Props) {
@@ -18,7 +18,7 @@ export default function List({ items }: Props) {
           className={`px-4 py-3 hover:bg-zinc-700 ${currentUrl === item.href && "bg-zinc-800"}`}
           key={item.title}
         >
-          {item.title}
+          {item.title && (item.title) || item.name && (item.name)}
         </Link>
       ))}
     </>

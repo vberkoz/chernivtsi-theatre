@@ -56,7 +56,7 @@ export default function Footer() {
       <div className="lg:hidden">
         {contactItems.map((item) => (
           <div
-            className="border-b border-r border-zinc-800 text-center p-4"
+            className="border-b border-zinc-800 text-center p-4"
             key={item.label}
           >
             <p className="font-thin">{item.label}</p>

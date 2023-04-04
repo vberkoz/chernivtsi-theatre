@@ -6,20 +6,28 @@ import prisma from "@/lib/prisma";
 
 import { nav as navItems } from "@/data/nav";
 
-export type Spectacle = {
+export type Item = {
   id: string;
-  type: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  published: string;
   href: string;
+
+  // Spectacle
+  type?: string;
+  title?: string;
+  excerpt?: string;
+  author?: string;
+  published?: string;
+
+  // Worker
+  name?: string;
+  position?: string;
+  department?: string;
+  bio?: string;
 };
 
 type Props = {
   data: {
-    spectacle: Spectacle;
-    spectacles: Spectacle[];
+    item: Item;
+    items: Item[];
     navItems: {
       name: string;
       href: string;
@@ -27,10 +35,10 @@ type Props = {
   };
 };
 
-export default function Spectacle({ data }: Props) {
+export default function Item({ data }: Props) {
   const listData = {
-    currentItem: data.spectacle,
-    items: data.spectacles,
+    currentItem: data.item,
+    items: data.items,
   };
 
   const navLayout = {
@@ -42,20 +50,56 @@ export default function Spectacle({ data }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query;
-  const spectacles = await prisma.spectacle.findMany();
-  spectacles.map((spectacle: any) => {
-    spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
-    spectacle.href = `/admin/spectacle/${spectacle.id}`;
-  });
+  const { id, page } = context.query;
 
-  const spectacle = spectacles.filter(
-    (item: any) => item.id === id
-  )[0];
+  let items: any[] = [];
+
+  switch (page) {
+    case "spectacle":
+      items = await prisma.spectacle.findMany();
+      items.map((spectacle: any) => {
+        spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
+        spectacle.href = `/admin/spectacle/${spectacle.id}`;
+      });
+      break;
+
+    case "worker":
+      items = await prisma.worker.findMany();
+      items.map((worker: any) => {
+        worker.href = `/admin/worker/${worker.id}`;
+      });
+      break;
+
+    case "event":
+      items = [
+        { id: "event-title", title: "Заголовок афіші", href: `/admin/${page}/event=title` },
+      ];
+      break;
+
+    case "vacancy":
+      items = [
+        { id: "vacancy-title", title: "Заголовок вакансії", href: `/admin/${page}/vacancy-title` },
+      ];
+      break;
+
+    case "post":
+      items = [
+        { id: "post-title", title: "Заголовок новини", href: `/admin/${page}/post-title` },
+      ];
+      break;
+
+    default:
+      items = [
+        { id: "title", title: "Заголовок", href: `/admin/${page}/title` },
+      ];
+      break;
+  }
+
+  const item = items.filter((item: any) => item.id === id)[0];
 
   const data = {
-    spectacle,
-    spectacles,
+    item,
+    items,
     navItems,
   };
 

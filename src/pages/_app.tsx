@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 
-import { Noto_Sans } from "@next/font/google";
+import { Noto_Sans } from "next/font/google";
 const sans = Noto_Sans({
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],
@@ -12,7 +12,7 @@ const sans = Noto_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
-import { Noto_Serif_Display } from "@next/font/google";
+import { Noto_Serif_Display } from "next/font/google";
 const serif = Noto_Serif_Display({
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],
@@ -20,7 +20,7 @@ const serif = Noto_Serif_Display({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
-import { IBM_Plex_Sans } from "@next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 const admin = IBM_Plex_Sans({
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],

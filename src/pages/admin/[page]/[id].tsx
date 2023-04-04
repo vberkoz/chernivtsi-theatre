@@ -43,14 +43,14 @@ export default function Spectacle({ data }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
-  const spectacles = await prisma.Spectacle.findMany();
-  spectacles.map((spectacle: Spectacle) => {
+  const spectacles = await prisma.spectacle.findMany();
+  spectacles.map((spectacle: any) => {
     spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
     spectacle.href = `/admin/spectacle/${spectacle.id}`;
   });
 
   const spectacle = spectacles.filter(
-    (item: Spectacle) => item.id === id
+    (item: any) => item.id === id
   )[0];
 
   const data = {

@@ -77,15 +77,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       break;
 
     case "vacancy":
-      items = [
-        { id: "vacancy-title", title: "Заголовок вакансії", href: `/admin/${page}/vacancy-title` },
-      ];
+      items = await prisma.vacancy.findMany();
+      items.map((vacancy: any) => {
+        vacancy.published = JSON.parse(JSON.stringify(vacancy.published));
+        vacancy.href = `/admin/vacancy/${vacancy.id}`;
+      });
       break;
 
     case "post":
-      items = [
-        { id: "post-title", title: "Заголовок новини", href: `/admin/${page}/post-title` },
-      ];
+      items = await prisma.post.findMany();
+      items.map((post: any) => {
+        post.published = JSON.parse(JSON.stringify(post.published));
+        post.href = `/admin/post/${post.id}`;
+      });
       break;
 
     default:

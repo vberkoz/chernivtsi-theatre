@@ -3,6 +3,6 @@ export const nav = [
   { name: "Вистави", href: "/admin/spectacle/gabrielle" },
   { name: "Працівники", href: "/admin/worker/andrij-ciganok" },
   { name: "Афіша", href: "/admin/event/event-title" },
-  { name: "Вакансії", href: "/admin/vacancy/vacancy-title" },
-  { name: "Новини", href: "/admin/post/post-title" },
+  { name: "Вакансії", href: "/admin/vacancy/choirmaster" },
+  { name: "Новини", href: "/admin/post/modern-theater-in-ukraine" },
 ];

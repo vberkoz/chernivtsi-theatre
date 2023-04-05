@@ -15,10 +15,15 @@ export default function List({ items }: Props) {
       {items.map((item) => (
         <Link
           href={item.href}
-          className={`px-4 py-3 hover:bg-zinc-700 ${currentUrl === item.href && "bg-zinc-800"}`}
+          className={`
+          px-4 py-3 
+          hover:bg-zinc-700 
+          truncate
+          ${currentUrl === item.href && "bg-zinc-800"}
+          `}
           key={item.title}
         >
-          {item.title && (item.title) || item.name && (item.name)}
+          {(item.title && item.title) || (item.name && item.name)}
         </Link>
       ))}
     </>

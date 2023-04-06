@@ -1,3 +1,5 @@
+import prisma from "@/lib/prisma";
+
 import Layout from "@/components/website/Layout";
 import Welcome from "@/components/website/Welcome";
 
@@ -18,8 +20,15 @@ import Event from "@/components/website/Event";
 import Partners from "@/components/website/Partners";
 import Post from "@/components/website/Post";
 import Vacancy from "@/components/website/Vacancy";
+import { Spectacle } from "@prisma/client";
 
-export default function Home() {
+type Props = {
+  data: {
+    spectacles: (Spectacle & { href: string })[];
+  };
+};
+
+export default function Home({ data }: Props) {
   return (
     <Layout>
       <Welcome />
@@ -27,11 +36,10 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <Premiere
           data={{
-            typeRow1: "комедія",
-            title: "Габріель",
-            date: "24 Грудня - 7 Січня",
-            href: "#",
-            image: gabrielle,
+            typeRow: data.spectacles[0].type,
+            title: data.spectacles[0].title,
+            href: data.spectacles[0].href,
+            image: data.spectacles[0].id,
             doubleWidth: true,
             topOverlayClass: "lg:border-r",
           }}
@@ -39,11 +47,10 @@ export default function Home() {
 
         <Premiere
           data={{
-            typeRow1: "драматична поема",
-            title: "Ніч на полонині",
-            date: "1 - 5 Лютого",
-            href: "#",
-            image: nightOnTheMeadow,
+            typeRow: data.spectacles[1].type,
+            title: data.spectacles[1].title,
+            href: data.spectacles[1].href,
+            image: data.spectacles[1].id,
             doubleWidth: false,
             topOverlayClass: "md:border-r",
           }}
@@ -51,11 +58,10 @@ export default function Home() {
 
         <Premiere
           data={{
-            typeRow1: "комедія на 2 дії",
-            title: "Вікенд на трьох",
-            date: "1 - 5 Лютого",
-            href: "#",
-            image: weekendForThree,
+            typeRow: data.spectacles[2].type,
+            title: data.spectacles[2].title,
+            href: data.spectacles[2].href,
+            image: data.spectacles[2].id,
             doubleWidth: false,
             topOverlayClass: "",
           }}
@@ -72,12 +78,10 @@ export default function Home() {
 
         <Premiere
           data={{
-            typeRow1: "дикий експеримент над любов’ю",
-            typeRow2: "на 2 дії",
-            title: "Зрадь мене",
-            date: "1 - 5 Лютого",
-            href: "#",
-            image: betrayMe,
+            typeRow: data.spectacles[3].type,
+            title: data.spectacles[3].title,
+            href: data.spectacles[3].href,
+            image: data.spectacles[3].id,
             doubleWidth: false,
             topOverlayClass: "lg:border-r",
           }}
@@ -85,11 +89,10 @@ export default function Home() {
 
         <Premiere
           data={{
-            typeRow1: "комедія в стилі рок-н-рол",
-            title: "Тітонька на мільйон",
-            date: "24 Грудня - 7 Січня",
-            href: "#",
-            image: auntyForAMillion,
+            typeRow: data.spectacles[4].type,
+            title: data.spectacles[4].title,
+            href: data.spectacles[4].href,
+            image: data.spectacles[4].id,
             doubleWidth: true,
             topOverlayClass: "",
           }}
@@ -211,4 +214,21 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const spectacles = await prisma.spectacle.findMany();
+  spectacles.map((spectacle: any) => {
+    spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
+    spectacle.href = `/admin/spectacle/${spectacle.id}`;
+  });
+
+  return {
+    props: {
+      data: {
+        spectacles,
+      },
+    },
+    revalidate: 10,
+  };
 }

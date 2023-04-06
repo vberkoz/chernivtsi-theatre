@@ -3,12 +3,10 @@ import { StaticImageData } from "next/image";
 
 type Props = {
   data: {
-    typeRow1: string;
-    typeRow2?: string;
+    typeRow: string;
     title: string;
-    date: string;
     href: string;
-    image: StaticImageData;
+    image: string;
     doubleWidth: boolean;
     topOverlayClass: string;
   };
@@ -47,24 +45,18 @@ export default function Premiere({ data }: Props) {
           data.doubleWidth ? "lg:bg-[length:100%]" : "lg:bg-[length:175%]"
         } `}
         style={{
-          backgroundImage: `url(${data.image.src})`,
+          backgroundImage: `url(https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/${data.image}.webp)`,
           backgroundPosition: "center",
         }}
       >
         <div className="flex flex-col z-10">
           <p className="font-sans font-thin text-lg text-zinc-100">
-            <span>{data.typeRow1} </span>
-            {data.typeRow1 && (
-              <span className="whitespace-nowrap">{data.typeRow2}</span>
-            )}
+            <span>{data.typeRow}</span>
           </p>
           <div className="font-serif text-4xl text-zinc-100 uppercase group-hover:text-red-700">
             {data.title}
           </div>
           <div className="grow"></div>
-          <p className="font-sans font-thin text-lg text-zinc-100 mb-2">
-            {data.date}
-          </p>
           <button className="font-serif text-zinc-100 uppercase bg-red-900 hover:bg-red-600 rounded-full py-1 px-4 max-w-fit">
             Придбати Квиток
           </button>

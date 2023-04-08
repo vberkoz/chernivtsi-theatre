@@ -7,31 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        String   @id @unique
-  title     String
-  content   String   @db.Text
-  published DateTime @default(now())
+model play {
+  id          String   @id @unique
+  title       String
+  author      String
+  type        String
+  duration    String
+  description String   @db.Text
+  audience    String   @default("general")
+  published   Boolean  @default(false)
+  created     DateTime @default(now())
 }
 
-model Spectacle {
-  id        String   @id @unique
-  type      String
-  title     String
-  excerpt   String   @db.Text
-  author    String
-  duration  String
-  published DateTime @default(now())
-}
-
-model Vacancy {
-  id        String   @id @unique
-  title     String
-  content   String   @db.Text
-  published DateTime @default(now())
-}
-
-model Worker {
+model worker {
   id         String @id @unique
   name       String
   position   String
@@ -39,46 +27,16 @@ model Worker {
   bio        String @db.Text
 }
 
-model accounts {
-  id                  String  @id
-  user_id             String
-  type                String
-  provider            String
-  provider_account_id String
-  refresh_token       String?
-  access_token        String?
-  expires_at          Int?
-  token_type          String?
-  scope               String?
-  id_token            String?
-  session_state       String?
-  oauth_token_secret  String?
-  oauth_token         String?
-
-  @@unique([provider, provider_account_id])
+model post {
+  id        String   @id @unique
+  title     String
+  content   String   @db.Text
+  published DateTime @default(now())
 }
 
-model sessions {
-  id            String   @id
-  session_token String   @unique
-  user_id       String
-  expires       DateTime
-}
-
-model users {
-  id             String    @id
-  name           String?
-  email          String?   @unique
-  created_at     DateTime  @default(now())
-  updated_at     DateTime
-  email_verified DateTime?
-  image          String?
-}
-
-model verificationtokens {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
+model vacancy {
+  id          String   @id @unique
+  title       String
+  description String   @db.Text
+  published   DateTime @default(now())
 }

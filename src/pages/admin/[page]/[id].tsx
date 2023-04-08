@@ -15,6 +15,7 @@ export type Item = {
   title?: string;
   excerpt?: string;
   author?: string;
+  created?: string;
   published?: string;
 
   // Worker
@@ -56,9 +57,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   switch (page) {
     case "spectacle":
-      items = await prisma.spectacle.findMany();
+      items = await prisma.play.findMany();
       items.map((spectacle: any) => {
-        spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
+        spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
         spectacle.href = `/admin/spectacle/${spectacle.id}`;
       });
       break;

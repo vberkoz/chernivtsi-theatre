@@ -219,7 +219,7 @@ export default function Home({ data }: Props) {
 export async function getStaticProps() {
   const spectacles = await prisma.spectacle.findMany();
   spectacles.map((spectacle: any) => {
-    spectacle.published = JSON.parse(JSON.stringify(spectacle.published));
+    spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
     spectacle.href = `/admin/spectacle/${spectacle.id}`;
   });
 

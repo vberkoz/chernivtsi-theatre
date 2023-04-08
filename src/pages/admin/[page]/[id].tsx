@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   switch (page) {
     case "spectacle":
-      items = await prisma.play.findMany();
+      items = await prisma.spectacle.findMany();
       items.map((spectacle: any) => {
         spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
         spectacle.href = `/admin/spectacle/${spectacle.id}`;

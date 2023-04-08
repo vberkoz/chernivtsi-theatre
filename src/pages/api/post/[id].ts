@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "../auth/[...nextauth]";
 import prisma from "@/lib/prisma";
-import { play as Spectacle } from "@prisma/client";
+import { spectacle as Spectacle } from "@prisma/client";
 
 type Item = Spectacle & {
   created: string;
@@ -25,7 +25,7 @@ export default async function handler(
     switch (method) {
       case "GET":
         const { id } = req.query;
-        const result: Spectacle | null = await prisma.play.findFirst({
+        const result: Spectacle | null = await prisma.spectacle.findFirst({
           where: {
             id: id.toString(),
           },

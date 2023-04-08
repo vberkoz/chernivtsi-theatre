@@ -20,7 +20,7 @@ import Event from "@/components/website/Event";
 import Partners from "@/components/website/Partners";
 import Post from "@/components/website/Post";
 import Vacancy from "@/components/website/Vacancy";
-import { play as Spectacle } from "@prisma/client";
+import { spectacle as Spectacle } from "@prisma/client";
 
 type Props = {
   data: {
@@ -217,7 +217,7 @@ export default function Home({ data }: Props) {
 }
 
 export async function getStaticProps() {
-  const spectacles = await prisma.play.findMany();
+  const spectacles = await prisma.spectacle.findMany();
   spectacles.map((spectacle: any) => {
     spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
     spectacle.href = `/admin/spectacle/${spectacle.id}`;

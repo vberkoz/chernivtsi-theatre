@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 async function main() {
-  const play = await prisma.play.createMany({
+  const spectacle = await prisma.spectacle.createMany({
     data: [
       {
         id: "auntie-for-a-million",
@@ -152,7 +152,7 @@ async function main() {
     ],
   });
 
-  console.log(play, worker, post, vacancy);
+  console.log(spectacle, worker, post, vacancy);
 }
 main()
   .then(async () => {

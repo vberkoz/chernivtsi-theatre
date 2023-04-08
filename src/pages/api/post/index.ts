@@ -14,7 +14,7 @@ export default async function handler(
     res.status(401).json({ message: "You must be logged in." });
   }
 
-  const items = await prisma.play.findMany();
+  const items = await prisma.spectacle.findMany();
   items.map((spectacle: any) => {
     spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
     spectacle.href = `/admin/spectacle/${spectacle.id}`;

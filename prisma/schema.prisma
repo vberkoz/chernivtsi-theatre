@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model spectacle {
+model Spectacle {
   id          String   @id @unique
   title       String
   author      String
@@ -19,7 +19,7 @@ model spectacle {
   created     DateTime @default(now())
 }
 
-model worker {
+model Worker {
   id         String @id @unique
   name       String
   position   String
@@ -27,14 +27,14 @@ model worker {
   bio        String @db.Text
 }
 
-model post {
+model Post {
   id        String   @id @unique
   title     String
   content   String   @db.Text
   published DateTime @default(now())
 }
 
-model vacancy {
+model Vacancy {
   id          String   @id @unique
   title       String
   description String   @db.Text

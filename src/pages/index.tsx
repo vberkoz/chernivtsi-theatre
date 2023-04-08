@@ -20,7 +20,7 @@ import Event from "@/components/website/Event";
 import Partners from "@/components/website/Partners";
 import Post from "@/components/website/Post";
 import Vacancy from "@/components/website/Vacancy";
-import { spectacle as Spectacle } from "@prisma/client";
+import { Spectacle } from "@prisma/client";
 
 type Props = {
   data: {

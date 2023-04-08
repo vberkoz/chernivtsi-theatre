@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "../auth/[...nextauth]";
 import prisma from "@/lib/prisma";
-import { spectacle as Spectacle } from "@prisma/client";
+import { Spectacle } from "@prisma/client";
 
 type Item = Spectacle & {
   created: string;

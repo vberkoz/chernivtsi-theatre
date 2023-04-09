@@ -12,7 +12,7 @@ export default function List({ items }: Props) {
 
   return (
     <>
-      {items.map((item) => (
+      {items.map((item, key) => (
         <Link
           href={item.href}
           className={`
@@ -21,7 +21,7 @@ export default function List({ items }: Props) {
           truncate
           ${currentUrl === item.href && "bg-zinc-800"}
           `}
-          key={item.title}
+          key={key}
         >
           {(item.title && item.title) || (item.name && item.name)}
         </Link>

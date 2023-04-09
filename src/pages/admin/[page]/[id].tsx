@@ -4,8 +4,6 @@ import NavLayout from "@/components/admin/NavLayout";
 import ListLayout from "@/components/admin/ListLayout";
 import prisma from "@/lib/prisma";
 
-import { nav as navItems } from "@/data/nav";
-
 export type Item = {
   id: string;
   href: string;
@@ -29,10 +27,6 @@ type Props = {
   data: {
     item: Item;
     items: Item[];
-    navItems: {
-      name: string;
-      href: string;
-    }[];
   };
 };
 
@@ -42,12 +36,11 @@ export default function Item({ data }: Props) {
     items: data.items,
   };
 
-  const navLayout = {
-    navItems: data.navItems,
-    children: <ListLayout data={listData} />,
-  };
-
-  return <NavLayout data={navLayout} />;
+  return (
+    <NavLayout>
+      <ListLayout data={listData} />
+    </NavLayout>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -73,7 +66,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     case "event":
       items = [
-        { id: "event-title", title: "Заголовок афіші", href: `/admin/${page}/event=title` },
+        {
+          id: "event-title",
+          title: "Заголовок афіші",
+          href: `/admin/${page}/event=title`,
+        },
       ];
       break;
 
@@ -105,7 +102,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = {
     item,
     items,
-    navItems,
   };
 
   return { props: { data } };

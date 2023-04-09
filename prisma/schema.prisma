@@ -40,3 +40,9 @@ model Vacancy {
   description String   @db.Text
   published   DateTime @default(now())
 }
+
+model AdminPage {
+  id    String @id @unique
+  title String
+  href  String
+}

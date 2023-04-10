@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 
 import NavLayout from "@/components/admin/NavLayout";
 import ListLayout from "@/components/admin/ListLayout";
-import prisma from "@/lib/prisma";
+import prisma from "@/utils/prisma";
 
 export type Item = {
   id: string;

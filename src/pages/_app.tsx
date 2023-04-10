@@ -4,6 +4,8 @@ import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 
+import { trpc } from '../utils/trpc';
+
 import { Noto_Sans } from "@next/font/google";
 const sans = Noto_Sans({
   subsets: ["latin", "cyrillic"],
@@ -28,7 +30,7 @@ const admin = IBM_Plex_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
-export default function App({
+function App({
   Component,
   pageProps,
 }: AppProps<{ session: Session }>) {
@@ -40,3 +42,5 @@ export default function App({
     </main>
   );
 }
+
+export default trpc.withTRPC(App);

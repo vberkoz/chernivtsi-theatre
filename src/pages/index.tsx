@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/utils/prisma";
 
 import Layout from "@/components/website/Layout";
 import Welcome from "@/components/website/Welcome";
@@ -21,6 +21,8 @@ import Partners from "@/components/website/Partners";
 import Post from "@/components/website/Post";
 import Vacancy from "@/components/website/Vacancy";
 import { Spectacle } from "@prisma/client";
+import { trpc } from "@/utils/trpc";
+
 
 type Props = {
   data: {

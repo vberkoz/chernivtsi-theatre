@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
-import useSWR from "swr";
+import { trpc } from "@/utils/trpc";
+
 import { AdminPage } from "@prisma/client";
 
 type Props = {
@@ -15,13 +16,28 @@ export default function NavLayout({ children }: Props) {
   const router = useRouter();
   const currentUrl = router.asPath.split("/")[2];
 
-  const fetcher = (input: RequestInfo | URL) =>
-    fetch(input).then((res) => res.json());
+  const welcomeScreen: ReactNode = (
+    <div className="w-screen h-screen flex items-center">
+      <div className="m-auto text-center max-w-sm">
+        <div className="text-lg mb-4">
+          Чернівецький академічний обласний український музично-драматичний
+          театр ім. Ольги Кобилянської
+        </div>
+        <div className="text-lg mb-4">Адміністративна зона</div>
+        <button
+          onClick={() => signIn()}
+          className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
+        >
+          Ввійти
+        </button>
+      </div>
+    </div>
+  );
 
-  const { data, error, isLoading } = useSWR("/api/menu", fetcher);
-
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  const menu = trpc.menu.list.useQuery();
+  if (!menu.data) {
+    return welcomeScreen;
+  }
 
   return (
     <>
@@ -43,7 +59,7 @@ export default function NavLayout({ children }: Props) {
         {session ? (
           <div className="grid grid-cols-4">
             <div className="flex flex-col border-r border-zinc-800 bg-zinc-900">
-              {data.items.map((item: AdminPage) => (
+              {menu.data.map((item: AdminPage) => (
                 <Link
                   href={item.href}
                   className={`px-4 py-3 hover:bg-zinc-700 ${
@@ -65,21 +81,7 @@ export default function NavLayout({ children }: Props) {
             <div className="col-span-3 h-screen">{children}</div>
           </div>
         ) : (
-          <div className="w-screen h-screen flex items-center">
-            <div className="m-auto text-center max-w-sm">
-              <div className="text-lg mb-4">
-                Чернівецький академічний обласний український
-                музично-драматичний театр ім. Ольги Кобилянської
-              </div>
-              <div className="text-lg mb-4">Адміністративна зона</div>
-              <button
-                onClick={() => signIn()}
-                className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
-              >
-                Ввійти
-              </button>
-            </div>
-          </div>
+          welcomeScreen
         )}
       </div>
     </>

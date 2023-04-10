@@ -1,11 +1,7 @@
 import Head from "next/head";
-import Link from "next/link";
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { trpc } from "@/utils/trpc";
-
-import { AdminPage } from "@prisma/client";
+import Nav from "./Nav";
 
 type Props = {
   children: ReactNode;
@@ -13,31 +9,6 @@ type Props = {
 
 export default function NavLayout({ children }: Props) {
   const { data: session } = useSession();
-  const router = useRouter();
-  const currentUrl = router.asPath.split("/")[2];
-
-  const welcomeScreen: ReactNode = (
-    <div className="w-screen h-screen flex items-center">
-      <div className="m-auto text-center max-w-sm">
-        <div className="text-lg mb-4">
-          Чернівецький академічний обласний український музично-драматичний
-          театр ім. Ольги Кобилянської
-        </div>
-        <div className="text-lg mb-4">Адміністративна зона</div>
-        <button
-          onClick={() => signIn()}
-          className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
-        >
-          Ввійти
-        </button>
-      </div>
-    </div>
-  );
-
-  const menu = trpc.menu.list.useQuery();
-  if (!menu.data) {
-    return welcomeScreen;
-  }
 
   return (
     <>
@@ -59,17 +30,7 @@ export default function NavLayout({ children }: Props) {
         {session ? (
           <div className="grid grid-cols-4">
             <div className="flex flex-col border-r border-zinc-800 bg-zinc-900">
-              {menu.data.map((item: AdminPage) => (
-                <Link
-                  href={item.href}
-                  className={`px-4 py-3 hover:bg-zinc-700 ${
-                    currentUrl === item.href.split("/")[2] && "bg-zinc-800"
-                  }`}
-                  key={item.title}
-                >
-                  {item.title}
-                </Link>
-              ))}
+              <Nav />
               <div className="grow"></div>
               <button
                 onClick={() => signOut()}
@@ -81,7 +42,21 @@ export default function NavLayout({ children }: Props) {
             <div className="col-span-3 h-screen">{children}</div>
           </div>
         ) : (
-          welcomeScreen
+          <div className="w-screen h-screen flex items-center">
+      <div className="m-auto text-center max-w-sm">
+        <div className="text-lg mb-4">
+          Чернівецький академічний обласний український музично-драматичний
+          театр ім. Ольги Кобилянської
+        </div>
+        <div className="text-lg mb-4">Адміністративна зона</div>
+        <button
+          onClick={() => signIn()}
+          className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
+        >
+          Ввійти
+        </button>
+      </div>
+    </div>
         )}
       </div>
     </>

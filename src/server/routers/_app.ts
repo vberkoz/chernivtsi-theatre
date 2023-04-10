@@ -1,9 +1,12 @@
-import { procedure, router } from '../trpc';
+import { publicProcedure, router } from '../trpc';
 import { menuRouter } from './menu';
+import { spectacleRouter } from './spectacle';
 
 export const appRouter = router({
-  healthcheck: procedure.query(() => 'yay!'),
+  healthcheck: publicProcedure.query(() => 'yay!'),
   menu: menuRouter,
+
+  spectacle: spectacleRouter,
 });
 
 // export type definition of API

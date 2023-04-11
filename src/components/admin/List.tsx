@@ -1,9 +1,14 @@
-import { Item } from "@/pages/admin/[page]/[id]";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+type SpectacleListItem = {
+  id: string;
+  title: string;
+  href: string;
+}
+
 type Props = {
-  items: Item[];
+  items: SpectacleListItem[];
 };
 
 export default function List({ items }: Props) {
@@ -23,7 +28,7 @@ export default function List({ items }: Props) {
           `}
           key={key}
         >
-          {(item.title && item.title) || (item.name && item.name)}
+          {item.title}
         </Link>
       ))}
     </>

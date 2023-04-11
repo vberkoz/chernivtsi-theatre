@@ -1,8 +1,8 @@
 import prisma from "@/utils/prisma";
-import { procedure, router } from "../trpc";
+import { protectedProcedure, router } from "../trpc";
 
 export const menuRouter = router({
-  list: procedure.query(async () => {
+  list: protectedProcedure.query(async () => {
     return await prisma.adminPage.findMany();
   }),
 });

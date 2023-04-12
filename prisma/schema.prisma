@@ -1,11 +1,19 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["clientExtensions"]
 }
 
 datasource db {
-  provider = "mysql"
+  // provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String   @id @unique
+  title     String
+  content   String   @db.Text
+  published DateTime @default(now())
 }
 
 model Spectacle {
@@ -18,6 +26,21 @@ model Spectacle {
   audience    String   @default("general")
   published   Boolean  @default(false)
   created     DateTime @default(now())
+  events      Event[]
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  beginningAt DateTime  @unique
+  spectacle   Spectacle @relation(fields: [spectacleId], references: [id])
+  spectacleId String
+}
+
+model Vacancy {
+  id          String   @id @unique
+  title       String
+  description String   @db.Text
+  published   DateTime @default(now())
 }
 
 model Worker {
@@ -26,20 +49,6 @@ model Worker {
   position   String
   department String
   bio        String @db.Text
-}
-
-model Post {
-  id        String   @id @unique
-  title     String
-  content   String   @db.Text
-  published DateTime @default(now())
-}
-
-model Vacancy {
-  id          String   @id @unique
-  title       String
-  description String   @db.Text
-  published   DateTime @default(now())
 }
 
 model AdminPage {

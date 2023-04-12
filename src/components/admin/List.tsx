@@ -23,7 +23,7 @@ export default function List({ items }: Props) {
           `}
           key={key}
         >
-          {item.title || item.name}
+          {item.title || item.name || item.spectacle?.title}
         </Link>
       ))}
     </>

@@ -1,9 +1,13 @@
 import List from "./List";
 
 export type Item = {
-  id: string;
+  id: string | number;
+
   title?: string;
   name?: string;
+  spectacle?: {
+    title: string;
+  }
   
   href: string;
 };
@@ -27,10 +31,10 @@ export default function ListLayout({ data }: Props) {
       </div>
       <div className="col-span-2 h-screen px-4 py-3">
         {!data.item ? (
-          <div className="px-4 py-3">Loading...</div>
+          <div>Loading...</div>
         ) : (
           <>
-            <div className="text-2xl">{data?.item?.title || data?.item?.name}</div>
+            <div className="text-2xl">{data?.item?.title || data?.item?.name }</div>
             <div>{data?.item?.id}</div>
           </>
         )}

@@ -4,7 +4,7 @@ import NavLayout from "@/components/admin/NavLayout";
 import ListLayout from "@/components/admin/ListLayout";
 import prisma from "@/utils/prisma";
 
-export type Item = {
+type Item = {
   id: string;
   href: string;
 
@@ -38,7 +38,7 @@ export default function Item({ data }: Props) {
 
   return (
     <NavLayout>
-      <ListLayout data={listData} />
+      {/* <ListLayout data={listData} /> */}
     </NavLayout>
   );
 }

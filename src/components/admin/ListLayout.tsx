@@ -1,10 +1,17 @@
-import { Item } from "@/pages/admin/page/[id]";
 import List from "./List";
+
+export type Item = {
+  id: string;
+  title?: string;
+  name?: string;
+  
+  href: string;
+};
 
 type Props = {
   data: {
-    items: Item[];
-    currentItem: Item;
+    items: Item[] | undefined;
+    item: Item | null | undefined;
   };
 };
 
@@ -12,11 +19,21 @@ export default function ListLayout({ data }: Props) {
   return (
     <div className="grid grid-cols-3">
       <div className="flex flex-col border-r border-zinc-800 bg-zinc-900">
-        {/* <List items={data.items} /> */}
+        {!data.items ? (
+          <div className="px-4 py-3">Loading...</div>
+        ) : (
+          <List items={data.items} />
+        )}
       </div>
       <div className="col-span-2 h-screen px-4 py-3">
-        <div className="text-2xl">{data.currentItem.title && (data.currentItem.title) || data.currentItem.name && (data.currentItem.name)}</div>
-        <div>{data.currentItem.id}</div>
+        {!data.item ? (
+          <div className="px-4 py-3">Loading...</div>
+        ) : (
+          <>
+            <div className="text-2xl">{data?.item?.title || data?.item?.name}</div>
+            <div>{data?.item?.id}</div>
+          </>
+        )}
       </div>
     </div>
   );

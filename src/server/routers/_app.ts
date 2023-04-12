@@ -1,4 +1,5 @@
 import { publicProcedure, router } from '../trpc';
+import { eventRouter } from './event';
 import { menuRouter } from './menu';
 import { postRouter } from './post';
 import { spectacleRouter } from './spectacle';
@@ -9,6 +10,7 @@ export const appRouter = router({
   healthcheck: publicProcedure.query(() => 'yay!'),
   menu: menuRouter,
 
+  event: eventRouter,
   post: postRouter,
   spectacle: spectacleRouter,
   vacancy: vacancyRouter,

@@ -33,7 +33,7 @@ export default function NavLayout({ children }: Props) {
               <Nav />
               <div className="grow"></div>
               <button
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: "/admin" })}
                 className="px-4 py-3 text-left hover:bg-zinc-800"
               >
                 Вийти
@@ -43,20 +43,20 @@ export default function NavLayout({ children }: Props) {
           </div>
         ) : (
           <div className="w-screen h-screen flex items-center">
-      <div className="m-auto text-center max-w-sm">
-        <div className="text-lg mb-4">
-          Чернівецький академічний обласний український музично-драматичний
-          театр ім. Ольги Кобилянської
-        </div>
-        <div className="text-lg mb-4">Адміністративна зона</div>
-        <button
-          onClick={() => signIn()}
-          className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
-        >
-          Ввійти
-        </button>
-      </div>
-    </div>
+            <div className="m-auto text-center max-w-sm">
+              <div className="text-lg mb-4">
+                Чернівецький академічний обласний український
+                музично-драматичний театр ім. Ольги Кобилянської
+              </div>
+              <div className="text-lg mb-4">Адміністративна зона</div>
+              <button
+                onClick={() => signIn()}
+                className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
+              >
+                Ввійти
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </>

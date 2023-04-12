@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-type SpectacleListItem = {
-  id: string;
-  title: string;
-  href: string;
-}
+import { Item } from "./ListLayout";
 
 type Props = {
-  items: SpectacleListItem[];
+  items: Item[] | undefined;
 };
 
 export default function List({ items }: Props) {
@@ -17,7 +12,7 @@ export default function List({ items }: Props) {
 
   return (
     <>
-      {items.map((item, key) => (
+      {items?.map((item, key) => (
         <Link
           href={item.href}
           className={`
@@ -28,7 +23,7 @@ export default function List({ items }: Props) {
           `}
           key={key}
         >
-          {item.title}
+          {item.title || item.name}
         </Link>
       ))}
     </>

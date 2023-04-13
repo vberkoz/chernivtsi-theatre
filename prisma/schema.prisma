@@ -48,6 +48,7 @@ model Worker {
   name       String
   position   String
   department String
+  imageUrl   String
   bio        String @db.Text
 }
 

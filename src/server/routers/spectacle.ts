@@ -1,5 +1,5 @@
 import prisma from "@/utils/prisma";
-import { protectedProcedure, router } from "../trpc";
+import { procedure, router } from "../trpc";
 import { z } from "zod";
 
 const xprisma = prisma.$extends({
@@ -11,12 +11,29 @@ const xprisma = prisma.$extends({
           return `/admin/spectacle/${spectacle.id}`;
         },
       },
+      publicHref: {
+        needs: { id: true },
+        compute(spectacle) {
+          return `/spectacle/${spectacle.id}`;
+        },
+      },
     },
   },
 });
 
 export const spectacleRouter = router({
-  list: protectedProcedure.query(async () => {
+  publicList: procedure.query(async () => {
+    return await xprisma.spectacle.findMany({
+      select: {
+        id: true,
+        title: true,
+        publicHref: true,
+        type: true
+      },
+    });
+  }),
+
+  list: procedure.query(async () => {
     return await xprisma.spectacle.findMany({
       select: {
         id: true,
@@ -25,7 +42,7 @@ export const spectacleRouter = router({
       },
     });
   }),
-  byId: protectedProcedure
+  byId: procedure
     .input(z.object({ id: z.string() }))
     .query(async (req) => {
       return await xprisma.spectacle.findUnique({

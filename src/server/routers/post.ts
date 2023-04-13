@@ -1,5 +1,5 @@
 import prisma from "@/utils/prisma";
-import { protectedProcedure, router } from "../trpc";
+import { procedure, router } from "../trpc";
 import { z } from "zod";
 
 const xprisma = prisma.$extends({
@@ -16,7 +16,7 @@ const xprisma = prisma.$extends({
 });
 
 export const postRouter = router({
-  list: protectedProcedure.query(async () => {
+  list: procedure.query(async () => {
     return await xprisma.post.findMany({
       select: {
         id: true,
@@ -25,7 +25,7 @@ export const postRouter = router({
       },
     });
   }),
-  byId: protectedProcedure
+  byId: procedure
     .input(z.object({ id: z.string() }))
     .query(async (req) => {
       return await xprisma.post.findUnique({

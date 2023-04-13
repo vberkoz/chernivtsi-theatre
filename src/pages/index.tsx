@@ -1,5 +1,3 @@
-import prisma from "@/utils/prisma";
-
 import Layout from "@/components/website/Layout";
 import Welcome from "@/components/website/Welcome";
 
@@ -13,7 +11,6 @@ import choirmasterPhoto from "public/vacancy/choirmasterPhoto.webp";
 import directorProducerPhoto from "public/vacancy/directorProducerPhoto.webp";
 import productionDesignerPhoto from "public/vacancy/productionDesignerPhoto.webp";
 
-import volodymyrShnayder from "public/volodymyrShnayder.webp";
 import Premiere from "@/components/website/Premiere";
 import Staff from "@/components/website/Staff";
 import Event from "@/components/website/Event";
@@ -21,11 +18,24 @@ import Partners from "@/components/website/Partners";
 import Post from "@/components/website/Post";
 import Vacancy from "@/components/website/Vacancy";
 
-import { Spectacle } from "@prisma/client";
+import { appRouter } from "@/server/routers/_app";
+import { getSession } from "next-auth/react";
 
 type Props = {
   data: {
-    spectacles: (Spectacle & { href: string })[];
+    worker: {
+      id: string;
+      name: string;
+      position: string;
+      href: string;
+      imageUrl: string;
+    };
+    spectacles: {
+      id: string;
+      title: string;
+      publicHref: string;
+      type: string;
+    }[];
   };
 };
 
@@ -39,7 +49,7 @@ export default function Home({ data }: Props) {
           data={{
             typeRow: data.spectacles[0].type,
             title: data.spectacles[0].title,
-            href: data.spectacles[0].href,
+            href: data.spectacles[0].publicHref,
             image: data.spectacles[0].id,
             doubleWidth: true,
             topOverlayClass: "lg:border-r",
@@ -50,7 +60,7 @@ export default function Home({ data }: Props) {
           data={{
             typeRow: data.spectacles[1].type,
             title: data.spectacles[1].title,
-            href: data.spectacles[1].href,
+            href: data.spectacles[1].publicHref,
             image: data.spectacles[1].id,
             doubleWidth: false,
             topOverlayClass: "md:border-r",
@@ -61,7 +71,7 @@ export default function Home({ data }: Props) {
           data={{
             typeRow: data.spectacles[2].type,
             title: data.spectacles[2].title,
-            href: data.spectacles[2].href,
+            href: data.spectacles[2].publicHref,
             image: data.spectacles[2].id,
             doubleWidth: false,
             topOverlayClass: "",
@@ -70,9 +80,9 @@ export default function Home({ data }: Props) {
 
         <Staff
           data={{
-            title: "Володимир Шнайдер",
-            position: "Головний Диригент",
-            image: volodymyrShnayder,
+            title: data.worker.name,
+            position: data.worker.position,
+            image: data.worker.imageUrl,
             topOverlayClass: "md:border-r",
           }}
         />
@@ -81,7 +91,7 @@ export default function Home({ data }: Props) {
           data={{
             typeRow: data.spectacles[3].type,
             title: data.spectacles[3].title,
-            href: data.spectacles[3].href,
+            href: data.spectacles[3].publicHref,
             image: data.spectacles[3].id,
             doubleWidth: false,
             topOverlayClass: "lg:border-r",
@@ -92,7 +102,7 @@ export default function Home({ data }: Props) {
           data={{
             typeRow: data.spectacles[4].type,
             title: data.spectacles[4].title,
-            href: data.spectacles[4].href,
+            href: data.spectacles[4].publicHref,
             image: data.spectacles[4].id,
             doubleWidth: true,
             topOverlayClass: "",
@@ -229,16 +239,16 @@ export default function Home({ data }: Props) {
 }
 
 export async function getStaticProps() {
-  const spectacles = await prisma.spectacle.findMany();
-  spectacles.map((spectacle: any) => {
-    spectacle.created = JSON.parse(JSON.stringify(spectacle.created));
-    spectacle.href = `/admin/spectacle/${spectacle.id}`;
-  });
+  const session = await getSession();
+  const caller = appRouter.createCaller({ session });
+  const spectacles = await caller.spectacle.publicList();
+  const worker = await caller.worker.takeOneRandom();
 
   return {
     props: {
       data: {
         spectacles,
+        worker: worker[0],
       },
     },
     revalidate: 10,

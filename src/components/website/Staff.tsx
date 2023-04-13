@@ -5,7 +5,7 @@ type Props = {
   data: {
     title: string;
     position: string;
-    image: StaticImageData;
+    image: string;
     topOverlayClass: string;
   };
 };
@@ -31,7 +31,7 @@ export default function Staff({ data }: Props) {
         className="flex flex-col items-center border border-zinc-800 md:w-[50%] rounded-full p-2 group-hover:bg-red-700"
       >
         <Image
-          src={data.image.src}
+          src={data.image}
           alt={data.title}
           width={200}
           height={200}

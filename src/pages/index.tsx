@@ -1,12 +1,6 @@
 import Layout from "@/components/website/Layout";
 import Welcome from "@/components/website/Welcome";
 
-import nightOnTheMeadow from "public/nightOnTheMeadow.webp";
-import gabrielle from "public/gabrielle.webp";
-import auntyForAMillion from "public/auntyForAMillion.webp";
-import betrayMe from "public/betrayMe.webp";
-import weekendForThree from "public/weekendForThree.webp";
-
 import choirmasterPhoto from "public/vacancy/choirmasterPhoto.webp";
 import directorProducerPhoto from "public/vacancy/directorProducerPhoto.webp";
 import productionDesignerPhoto from "public/vacancy/productionDesignerPhoto.webp";
@@ -21,8 +15,27 @@ import Vacancy from "@/components/website/Vacancy";
 import { appRouter } from "@/server/routers/_app";
 import { getSession } from "next-auth/react";
 
+import superjson from "superjson";
+
+type EventType = {
+  id: number;
+  href: string;
+  beginningAt: Date;
+  spectacle: {
+    title: string;
+    type: string;
+    imageUrl: string;
+  };
+};
+
 type Props = {
   data: {
+    spectacles: {
+      id: string;
+      title: string;
+      publicHref: string;
+      type: string;
+    }[];
     worker: {
       id: string;
       name: string;
@@ -30,16 +43,12 @@ type Props = {
       href: string;
       imageUrl: string;
     };
-    spectacles: {
-      id: string;
-      title: string;
-      publicHref: string;
-      type: string;
-    }[];
+    event: string;
   };
 };
 
 export default function Home({ data }: Props) {
+  const event = superjson.parse<EventType[]>(data.event);
   return (
     <Layout>
       <Welcome />
@@ -114,45 +123,45 @@ export default function Home({ data }: Props) {
         </div>
         <Event
           data={{
-            type: "комедія",
-            title: "Габріель",
-            image: gabrielle,
+            type: event[0].spectacle.type,
+            title: event[0].spectacle.title,
+            image: event[0].spectacle.imageUrl,
             href: "#",
-            date: "18 Січня",
-            time: "19:00",
+            date: event[0].beginningAt,
+            time: event[0].beginningAt,
             topOverlayClass: "md:border-r",
           }}
         />
         <Event
           data={{
-            type: "драматична поема",
-            title: "Ніч на полонині",
-            image: nightOnTheMeadow,
+            type: event[1].spectacle.type,
+            title: event[1].spectacle.title,
+            image: event[1].spectacle.imageUrl,
             href: "#",
-            date: "19 Січня",
-            time: "19:00",
+            date: event[1].beginningAt,
+            time: event[1].beginningAt,
             topOverlayClass: "md:border-r-0 lg:border-r",
           }}
         />
         <Event
           data={{
-            type: "комедія",
-            title: "Габріель",
-            image: gabrielle,
+            type: event[2].spectacle.type,
+            title: event[2].spectacle.title,
+            image: event[2].spectacle.imageUrl,
             href: "#",
-            date: "20 Січня",
-            time: "18:00",
+            date: event[2].beginningAt,
+            time: event[2].beginningAt,
             topOverlayClass: "md:border-r",
           }}
         />
         <Event
           data={{
-            type: "комедія на 2 дії",
-            title: "Вікенд на трьох",
-            image: weekendForThree,
+            type: event[3].spectacle.type,
+            title: event[3].spectacle.title,
+            image: event[3].spectacle.imageUrl,
             href: "#",
-            date: "20 Січня",
-            time: "20:00",
+            date: event[3].beginningAt,
+            time: event[3].beginningAt,
             topOverlayClass: "",
           }}
         />
@@ -241,16 +250,19 @@ export default function Home({ data }: Props) {
 export async function getStaticProps() {
   const session = await getSession();
   const caller = appRouter.createCaller({ session });
+
   const spectacles = await caller.spectacle.publicList();
   const worker = await caller.worker.takeOneRandom();
+  const event = await caller.event.publicList();
 
   return {
     props: {
       data: {
         spectacles,
         worker: worker[0],
+        event: superjson.stringify(event),
       },
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 }

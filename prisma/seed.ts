@@ -180,20 +180,22 @@ async function main() {
   const vacancy = await prisma.vacancy.createMany({
     data: [
       {
-        id: "choirmaster",
-        title: "Choirmaster",
-        description: "Choirmaster",
-      },
-      {
-        id: "director-producer",
-        title: "Director-producer",
-        description: "Director-producer",
-      },
-      {
         id: "production-designer",
-        title: "Production designer of a theater and performance institution",
-        description:
-          "Production designer of a theater and performance institution",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/vacancy/production-designer.webp",
+        title: "Художник-постановник театрально-виконавчого закладу",
+        description: "Художник-постановник театрально-виконавчого закладу",
+      },
+      {
+        id: "choirmaster",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/vacancy/choirmaster.webp",
+        title: "Хормейстер",
+        description: "Хормейстер",
+      },
+      {
+        id: "director-stage-manager",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/vacancy/director-stage-manager.webp",
+        title: "Режисер-постановник",
+        description: "Режисер-постановник",
       },
     ],
   });

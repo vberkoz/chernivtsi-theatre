@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { StaticImageData } from "next/image";
 
 type Props = {
   data: {
     title: string;
     href: string;
-    image: StaticImageData;
+    image: string;
     doubleWidth: boolean;
     topOverlayClass: string;
   };
@@ -44,7 +43,7 @@ export default function Premiere({ data }: Props) {
           data.doubleWidth ? "lg:bg-[length:100%]" : "lg:bg-[length:175%]"
         } `}
         style={{
-          backgroundImage: `url(${data.image.src})`,
+          backgroundImage: `url(${data.image})`,
           backgroundPosition: "center",
         }}
       >

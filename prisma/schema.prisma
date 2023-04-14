@@ -12,6 +12,8 @@ datasource db {
 model Post {
   id        String   @id @unique
   title     String
+  type      String
+  excerpt   String
   content   String   @db.Text
   published DateTime @default(now())
 }

@@ -5,6 +5,7 @@ async function main() {
     data: [
       {
         id: "auntie-for-a-million",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/auntie-for-a-million.webp",
         title: "Тітонька на мільйон",
         author: "Брендон Томас",
         type: "комедія в стилі рок-н-рол",
@@ -14,6 +15,7 @@ async function main() {
       },
       {
         id: "betray-me",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/betray-me.webp",
         title: "Зрадь мене",
         author: "Володимир Винниченко",
         type: "дикий експеримент над любов’ю на 2 дії",
@@ -23,6 +25,7 @@ async function main() {
       },
       {
         id: "gabriel",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/gabriel.webp",
         title: "Габріель",
         author: "Мішель Лоранс",
         type: "комедія",
@@ -32,6 +35,7 @@ async function main() {
       },
       {
         id: "night-on-the-mountain-pasture",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/night-on-the-mountain-pasture.webp",
         title: "Ніч на полонині",
         author: "Олександр Олесь",
         type: "драматична поема",
@@ -41,6 +45,7 @@ async function main() {
       },
       {
         id: "journeys-with-an-angel",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/journeys-with-an-angel.webp",
         title: "Подорожі з ангелом",
         author: "Петро Гладилін",
         type: "драма-притча на 2 дії",
@@ -50,6 +55,7 @@ async function main() {
       },
       {
         id: "weekend-for-three",
+        imageUrl: "https://hxufkbugxzmalzpeuoxb.supabase.co/storage/v1/object/public/spectacles/weekend-for-three.webp",
         title: "Вікенд на трьох",
         author: "Жан Пуаре",
         type: "комедія на 2 дії",

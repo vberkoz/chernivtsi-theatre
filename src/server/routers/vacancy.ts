@@ -16,6 +16,18 @@ const xprisma = prisma.$extends({
 });
 
 export const vacancyRouter = router({
+
+  publicList: procedure.query(async () => {
+    return await xprisma.vacancy.findMany({
+      select: {
+        id: true,
+        title: true,
+        imageUrl: true,
+        href: true,
+      },
+    });
+  }),
+
   list: procedure.query(async () => {
     return await xprisma.vacancy.findMany({
       select: {

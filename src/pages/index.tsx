@@ -44,6 +44,12 @@ type Props = {
       imageUrl: string;
     };
     event: string;
+    vacancy: {
+      id: string;
+      title: string;
+      imageUrl: string;
+      href: string;
+    }[];
   };
 };
 
@@ -173,27 +179,27 @@ export default function Home({ data }: Props) {
         </div>
         <Vacancy
           data={{
-            title: "Художник-постановник театрально-виконавчого закладу",
+            title: data.vacancy[0].title,
             href: "#",
-            image: productionDesignerPhoto,
+            image: data.vacancy[0].imageUrl,
             doubleWidth: true,
             topOverlayClass: "lg:border-r",
           }}
         />
         <Vacancy
           data={{
-            title: "Хормейстер",
+            title: data.vacancy[1].title,
             href: "#",
-            image: choirmasterPhoto,
+            image: data.vacancy[1].imageUrl,
             doubleWidth: false,
             topOverlayClass: "md:border-r",
           }}
         />
         <Vacancy
           data={{
-            title: "Режисер-постановник",
+            title: data.vacancy[2].title,
             href: "#",
-            image: directorProducerPhoto,
+            image: data.vacancy[2].imageUrl,
             doubleWidth: false,
             topOverlayClass: "",
           }}
@@ -254,6 +260,7 @@ export async function getStaticProps() {
   const spectacles = await caller.spectacle.publicList();
   const worker = await caller.worker.takeOneRandom();
   const event = await caller.event.publicList();
+  const vacancy = await caller.vacancy.publicList();
 
   return {
     props: {
@@ -261,6 +268,7 @@ export async function getStaticProps() {
         spectacles,
         worker: worker[0],
         event: superjson.stringify(event),
+        vacancy,
       },
     },
     revalidate: 1,

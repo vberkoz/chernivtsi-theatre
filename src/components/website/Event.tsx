@@ -1,14 +1,15 @@
-import { StaticImageData } from "next/image";
 import Link from "next/link";
+import { format } from "date-fns";
+import { uk } from "date-fns/locale";
 
 type Props = {
   data: {
     type: string;
     title: string;
-    image: StaticImageData;
+    image: string;
     href: string;
-    date: string;
-    time: string;
+    date: Date;
+    time: Date;
     topOverlayClass: string;
   };
 };
@@ -20,8 +21,8 @@ export default function Event({ data }: Props) {
       className={`p-4 text-center border-b ${data.topOverlayClass} border-zinc-800 h-[50vh] flex flex-col group`}
     >
       <div className="font-thin">
-        <p>{data.date}</p>
-        <p>{data.time}</p>
+        <p>{format(data.date, "dd MMMM", { locale: uk })}</p>
+        <p>{format(data.date, "HH:mm", { locale: uk })}</p>
       </div>
       <div className="grow min-h-[8px]"></div>
       <div
@@ -41,7 +42,7 @@ export default function Event({ data }: Props) {
           bg-[length:150%] bg-black
           "
           style={{
-            backgroundImage: `url(${data.image.src})`,
+            backgroundImage: `url(${data.image})`,
             backgroundPosition: "center bottom",
             backgroundRepeat: "no-repeat",
           }}

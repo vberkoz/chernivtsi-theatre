@@ -18,6 +18,7 @@ model Post {
 
 model Spectacle {
   id          String   @id @unique
+  imageUrl    String
   title       String
   author      String
   type        String

@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { format } from "date-fns";
+import { uk } from "date-fns/locale";
 
 type Props = {
   data: {
-    date: string;
+    date: Date;
     type: string;
     title: string;
     excerpt: string;
@@ -20,7 +22,7 @@ export default function Post({ data }: Props) {
       `}
     >
       <div className="flex flex-row">
-        <p className="text-red-900 mr-4">{data.date}</p>
+        <p className="text-red-900 mr-4">{format(data.date, "y-MM-dd", { locale: uk })}</p>
         <p className="font-thin">{data.type}</p>
       </div>
       <div className="grow min-h-[5vh]"></div>

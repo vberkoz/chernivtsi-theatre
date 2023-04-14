@@ -1,10 +1,6 @@
 import Layout from "@/components/website/Layout";
 import Welcome from "@/components/website/Welcome";
 
-import choirmasterPhoto from "public/vacancy/choirmasterPhoto.webp";
-import directorProducerPhoto from "public/vacancy/directorProducerPhoto.webp";
-import productionDesignerPhoto from "public/vacancy/productionDesignerPhoto.webp";
-
 import Premiere from "@/components/website/Premiere";
 import Staff from "@/components/website/Staff";
 import Event from "@/components/website/Event";
@@ -28,6 +24,15 @@ type EventType = {
   };
 };
 
+type PostType = {
+  id: string;
+  title: string;
+  type: string;
+  excerpt: string;
+  published: Date;
+  href: string;
+}
+
 type Props = {
   data: {
     spectacles: {
@@ -44,6 +49,7 @@ type Props = {
       imageUrl: string;
     };
     event: string;
+    post: string;
     vacancy: {
       id: string;
       title: string;
@@ -55,6 +61,7 @@ type Props = {
 
 export default function Home({ data }: Props) {
   const event = superjson.parse<EventType[]>(data.event);
+  const post = superjson.parse<PostType[]>(data.post);
   return (
     <Layout>
       <Welcome />
@@ -210,41 +217,37 @@ export default function Home({ data }: Props) {
         </div>
         <Post
           data={{
-            date: "2022-09-12",
-            type: "Зустріч",
-            title: "Сучасний театр в Україні",
-            excerpt:
-              "Хто ми? Звідки? Чи куди йдемо? Сергій Винниченко театральний блогер, автор порталу “Театральна риболовля” 18 червня, 12:00, фоє театру, 2-й поверх. Вхід вільний.",
+            date: post[0].published,
+            type: post[0].type,
+            title: post[0].title,
+            excerpt: post[0].excerpt,
             containerClass: "md:border-r",
           }}
         />
         <Post
           data={{
-            date: "2022-12-22",
-            type: "Оголошення",
-            title: "До зустрічі у новому театральному сезоні",
-            excerpt:
-              "Шановні глядачі, до зустрічі у новому 91-му театральному сезоні. З питань екскурсії, звертайтеся за телефоном (0372) 52-46-62.",
+            date: post[1].published,
+            type: post[1].type,
+            title: post[1].title,
+            excerpt: post[1].excerpt,
             containerClass: "md:border-r-0 lg:border-r",
           }}
         />
         <Post
           data={{
-            date: "2022-12-22",
-            type: "Зустріч",
-            title: "Театральна імпреза “Білий птах Буковини”",
-            excerpt:
-              "15 червня, 11:00, театральна імпреза до 80-ї річниці з дня народження видатного українського кіномитця Івана Миколайчука. Театр просто неба в музеї-садибі села Чорториї. Вхід вільний.",
+            date: post[2].published,
+            type: post[2].type,
+            title: post[2].title,
+            excerpt: post[2].excerpt,
             containerClass: "md:border-r",
           }}
         />
         <Post
           data={{
-            date: "2022-11-22",
-            type: "Оголошення",
-            title: "Відміна вистав у жовтні 2022",
-            excerpt:
-              "Шановні глядачі, повідомляємо про зміни в репертуарі на жовтень 2022 року, вистави з 7 по 10 жовтня - скасовано. Приносимо вибачання за незручності і дякуємо за розуміння.",
+            date: post[3].published,
+            type: post[3].type,
+            title: post[3].title,
+            excerpt: post[3].excerpt,
             containerClass: "",
           }}
         />
@@ -261,6 +264,7 @@ export async function getStaticProps() {
   const worker = await caller.worker.takeOneRandom();
   const event = await caller.event.publicList();
   const vacancy = await caller.vacancy.publicList();
+  const post = await caller.post.publicList();
 
   return {
     props: {
@@ -269,6 +273,7 @@ export async function getStaticProps() {
         worker: worker[0],
         event: superjson.stringify(event),
         vacancy,
+        post: superjson.stringify(post),
       },
     },
     revalidate: 1,

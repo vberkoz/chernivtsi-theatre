@@ -39,7 +39,7 @@ export default function NavLayout({ children }: Props) {
                 Вийти
               </button>
             </div>
-            <div className="col-span-3 h-screen">{children}</div>
+            <div className="col-span-3 h-screen grid grid-cols-3">{children}</div>
           </div>
         ) : (
           <div className="w-screen h-screen flex items-center">

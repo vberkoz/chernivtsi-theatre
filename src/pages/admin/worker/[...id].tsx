@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import NavLayout from "@/components/admin/NavLayout";
 import pageParamToString from "@/utils/pageParamToString";
-import ListLayout from "@/components/admin/ListLayout";
+import List from "@/components/admin/List";
 
 export default function Worker() {
   const router = useRouter();
@@ -12,14 +12,25 @@ export default function Worker() {
   const items = trpc.worker.list.useQuery();
   const item = trpc.worker.byId.useQuery({ id: itemId });
 
-  const data = {
-    items: items.data,
-    item: item.data,
-  };
-
   return (
     <NavLayout>
-      <ListLayout data={data} />
+      <div className="flex flex-col border-r border-zinc-800 bg-zinc-900">
+        {!items.data ? (
+          <div className="px-4 py-3">Завантаження...</div>
+        ) : (
+          <List items={items.data} />
+        )}
+      </div>
+      <div className="col-span-2 h-screen px-4 py-3">
+        {!item.data ? (
+          <div>Завантаження...</div>
+        ) : (
+          <>
+            <div className="text-2xl">{item.data.name}</div>
+            <div>{item.data.id}</div>
+          </>
+        )}
+      </div>
     </NavLayout>
   );
 }

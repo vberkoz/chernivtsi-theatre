@@ -1,9 +1,20 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Item } from "./ListLayout";
 
 type Props = {
-  items: Item[] | undefined;
+  items:
+    | {
+        href: string;
+
+        id?: string;
+        eventId?: string;
+        title?: string;
+        name?: string;
+        spectacle?: {
+          title: string;
+        };
+      }[]
+    | undefined;
 };
 
 export default function List({ items }: Props) {

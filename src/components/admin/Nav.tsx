@@ -9,7 +9,7 @@ export default function Nav() {
 
   const menu = trpc.menu.list.useQuery();
   if (!menu.data) {
-    return <div className="px-4 py-3">Loading...</div>;
+    return <div className="px-4 py-3">Завантаження...</div>;
   }
 
   return (

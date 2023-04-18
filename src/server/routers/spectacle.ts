@@ -28,12 +28,12 @@ export const spectacleRouter = router({
         id: true,
         title: true,
         publicHref: true,
-        type: true
+        type: true,
       },
     });
   }),
 
-  list: procedure.query(async () => {
+  adminList: procedure.query(async () => {
     return await xprisma.spectacle.findMany({
       select: {
         id: true,
@@ -42,18 +42,31 @@ export const spectacleRouter = router({
       },
     });
   }),
-  byId: procedure
-    .input(z.object({ id: z.string() }))
-    .query(async (req) => {
-      return await xprisma.spectacle.findUnique({
-        where: {
-          id: req.input.id,
+
+  byId: procedure.input(z.object({ id: z.string() })).query(async (req) => {
+    return await xprisma.spectacle.findUnique({
+      where: {
+        id: req.input.id,
+      },
+      select: {
+        id: true,
+        imageUrl: true,
+        title: true,
+        author: true,
+        type: true,
+        duration: true,
+        description: true,
+        audience: true,
+        published: true,
+        created: true,
+        events: {
+          select: {
+            id: true,
+            beginningAt: true,
+          },
         },
-        select: {
-          id: true,
-          title: true,
-          href: true,
-        },
-      });
-    }),
+        href: true,
+      },
+    });
+  }),
 });

@@ -22,7 +22,7 @@ export default function Spectacle() {
           <List items={items.data} />
         )}
       </div>
-      <div className="col-span-2 md:h-screen px-4 py-3">
+      <div className="col-span-2 md:h-screen px-4 py-3 overflow-y-scroll">
         {!item.data ? (
           <div>Завантаження...</div>
         ) : (
@@ -30,6 +30,14 @@ export default function Spectacle() {
             data={{
               title: item.data.title,
               id: item.data.id,
+              imageUrl: item.data.imageUrl,
+              author: item.data.author,
+              type: item.data.type,
+              duration: item.data.duration,
+              description: item.data.description,
+              audience: item.data.audience,
+              published: item.data.published,
+              events: item.data.events,
             }}
           />
         )}

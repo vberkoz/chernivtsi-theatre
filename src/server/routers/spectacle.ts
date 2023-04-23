@@ -56,18 +56,13 @@ export const spectacleRouter = router({
         type: true,
         duration: true,
         description: true,
-        audience: true,
+        forChildren: true,
         published: true,
         created: true,
         events: {
           select: {
             id: true,
             beginningAt: true,
-            spectacle: {
-              select: {
-                title: true,
-              }
-            },
             spectacleId: true,
           },
         },

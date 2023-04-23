@@ -14,7 +14,7 @@ const schema = z.object({
   type: z.string().min(1, { message: "Це поле обов'язкове" }),
   duration: z.string().min(1, { message: "Це поле обов'язкове" }),
   description: z.string(),
-  audience: z.string(),
+  forChildren: z.boolean(),
   published: z.boolean(),
 });
 
@@ -23,9 +23,6 @@ type EventsType = {
   events: {
     id: number;
     beginningAt: Date;
-    spectacle: {
-      title: string;
-    };
     spectacleId: string;
   }[];
 };
@@ -35,25 +32,23 @@ export default function AdminSpectacleForm({
 }: {
   data: SpectacleType & EventsType;
 }) {
-  const [opened, setOpened] = useState(false);
-  const [audience, setAudience] = useState(data.audience);
-  const toggleDD = () => {
-    setOpened(!opened);
-  };
+  // const [opened, setOpened] = useState(false);
+  // const [audience, setAudience] = useState(data.audience);
+  // const toggleDD = () => {
+  //   setOpened(!opened);
+  // };
 
-  console.log(data);
-
-  const handleDD = (audience: string) => {
-    setAudience(audience);
-    setValue("audience", audience);
-    toggleDD();
-  };
+  // const handleDD = (audience: string) => {
+  //   setAudience(audience);
+  //   setValue("audience", audience);
+  //   toggleDD();
+  // };
 
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
+    // setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -64,7 +59,7 @@ export default function AdminSpectacleForm({
       type: data.type,
       duration: data.duration,
       description: data.description,
-      audience: data.audience,
+      forChildren: data.forChildren,
       published: data.published,
       events: data.events,
     },
@@ -82,13 +77,11 @@ export default function AdminSpectacleForm({
       type: data.type,
       duration: data.duration,
       description: data.description,
-      audience: data.audience,
+      forChildren: data.forChildren,
       published: data.published,
       events: data.events,
     });
   }, [data, reset]);
-
-  console.log(!!data.events.length);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
@@ -155,7 +148,7 @@ export default function AdminSpectacleForm({
         description=""
       />
 
-      <div className="relative">
+      {/* <div className="relative">
         <label className="text-sm mt-8 mb-2 text-zinc-500">Аудиторія</label>
         <input {...register("audience")} className="hidden" />
         <button
@@ -224,6 +217,21 @@ export default function AdminSpectacleForm({
       <InputErrorAndDescription
         errorMsg={errors.audience?.message}
         description=""
+      /> */}
+
+      <label className="text-sm mt-8 mb-2 text-zinc-500">Аудиторія</label>
+      <div className="flex items-center -mb-2">
+        <input
+          {...register("forChildren")}
+          id="forChildren"
+          type="checkbox"
+          className="w-[18px] h-[18px] mr-4  checkbox-icon focus:ring-2 ring-zinc-100 ring-offset-2 ring-offset-zinc-900 bg-zinc-800 hover:bg-zinc-700 outline-none border border-zinc-100"
+        />
+        <label htmlFor="forChildren">Для дітей</label>
+      </div>
+      <InputErrorAndDescription
+        errorMsg={errors.published?.message}
+        description="Ця опція позначає виставу як рекомендовану для дітей"
       />
 
       <label className="text-sm mt-8 mb-2 text-zinc-500">Публікування</label>
@@ -232,7 +240,7 @@ export default function AdminSpectacleForm({
           {...register("published")}
           id="published"
           type="checkbox"
-          className="w-[18px] h-[18px] mr-4 rounded-sm checkbox-icon focus:ring-2 ring-zinc-100 ring-offset-2 ring-offset-zinc-900 bg-zinc-800 hover:bg-zinc-700 outline-none border border-zinc-100"
+          className="w-[18px] h-[18px] mr-4 checkbox-icon focus:ring-2 ring-zinc-100 ring-offset-2 ring-offset-zinc-900 bg-zinc-800 hover:bg-zinc-700 outline-none border border-zinc-100"
         />
         <label htmlFor="published">Відображати на сайті</label>
       </div>
@@ -242,14 +250,15 @@ export default function AdminSpectacleForm({
       />
 
       <div className="text-sm mt-8 mb-2 text-zinc-500">Сеанси</div>
+      <div className="py-0 h-0 border-b border-zinc-700"></div>
       {data.events.length ? (
         data.events.map((event) => (
-          <div className="py-3 border-y border-zinc-700" key={event.id}>
+          <div className="py-3 border-b border-zinc-700" key={event.id}>
             {format(event.beginningAt, "HH:mm dd MMMM yyyy", { locale: uk })}
           </div>
         ))
       ) : (
-        <div className="py-3 border-y border-zinc-700">Сеансів немає</div>
+        <div className="py-3 border-b border-zinc-700">Сеансів немає</div>
       )}
 
       <button

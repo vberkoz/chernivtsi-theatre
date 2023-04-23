@@ -35,7 +35,7 @@ export default function Spectacle() {
               type: item.data.type,
               duration: item.data.duration,
               description: item.data.description,
-              audience: item.data.audience,
+              forChildren: item.data.forChildren,
               published: item.data.published,
               events: item.data.events,
             }}

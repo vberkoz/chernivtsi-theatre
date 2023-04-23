@@ -63,6 +63,12 @@ export const spectacleRouter = router({
           select: {
             id: true,
             beginningAt: true,
+            spectacle: {
+              select: {
+                title: true,
+              }
+            },
+            spectacleId: true,
           },
         },
         href: true,

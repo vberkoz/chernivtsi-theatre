@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@hookform/resolvers': ^3.1.0
   '@next/font': ^13.2.4
   '@prisma/client': ^4.12.0
   '@tanstack/react-query': ^4.28.0
@@ -31,6 +32,7 @@ specifiers:
   zod: ^3.21.4
 
 dependencies:
+  '@hookform/resolvers': 3.1.0_react-hook-form@7.43.9
   '@next/font': 13.2.4
   '@prisma/client': 4.12.0_prisma@4.12.0
   '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
@@ -113,6 +115,14 @@ packages:
   /@eslint/js/8.36.0:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: false
+
+  /@hookform/resolvers/3.1.0_react-hook-form@7.43.9:
+    resolution: {integrity: sha512-z0A8K+Nxq+f83Whm/ajlwE6VtQlp/yPHZnXw7XWVPIGm1Vx0QV8KThU3BpbBRfAZ7/dYqCKKBNnQh85BkmBKkA==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.9_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:

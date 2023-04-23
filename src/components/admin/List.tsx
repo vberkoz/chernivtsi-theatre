@@ -30,6 +30,7 @@ export default function List({ items }: Props) {
           px-4 py-3 
           hover:bg-zinc-700 
           truncate
+          outline-none focus:ring-2 ring-inset ring-zinc-100
           ${currentUrl === item.href && "bg-zinc-800"}
           `}
           key={key}

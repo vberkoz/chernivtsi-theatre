@@ -5,8 +5,9 @@ import { z } from "zod";
 
 import { format } from "date-fns";
 import { uk } from "date-fns/locale";
+import { trpc } from "@/utils/trpc";
 
-const schema = z.object({
+export const schemaSpectacle = z.object({
   title: z.string().min(1, { message: "Це поле обов'язкове" }),
   id: z.string().min(1, { message: "Це поле обов'язкове" }),
   imageUrl: z.string().url({ message: "Невірний формат адреси зображення" }),
@@ -18,7 +19,7 @@ const schema = z.object({
   published: z.boolean(),
 });
 
-type SpectacleType = z.infer<typeof schema>;
+type SpectacleType = z.infer<typeof schemaSpectacle>;
 type EventsType = {
   events: {
     id: number;
@@ -49,7 +50,7 @@ export default function AdminSpectacleForm({
     handleSubmit,
     reset,
     // setValue,
-    formState: { errors },
+    formState: { errors, isDirty, isSubmitting },
   } = useForm({
     defaultValues: {
       title: data.title,
@@ -63,10 +64,26 @@ export default function AdminSpectacleForm({
       published: data.published,
       events: data.events,
     },
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schemaSpectacle),
   });
 
-  const onSubmit: SubmitHandler<SpectacleType> = (data) => console.log(data);
+  const mutation = trpc.spectacle.update.useMutation();
+
+  const onSubmit: SubmitHandler<SpectacleType> = (formData) => {
+    mutation.mutate(formData);
+    reset({
+      title: formData.title,
+      id: formData.id,
+      imageUrl: formData.imageUrl,
+      author: formData.author,
+      type: formData.type,
+      duration: formData.duration,
+      description: formData.description,
+      forChildren: formData.forChildren,
+      published: formData.published,
+      events: data.events,
+    });
+  };
 
   useEffect(() => {
     reset({
@@ -263,14 +280,17 @@ export default function AdminSpectacleForm({
 
       <button
         type="submit"
-        className="
+        className={`
         mt-12 flex w-fit cursor-pointer px-4 py-3
-        text-zinc-100
-        bg-blue-600 hover:bg-blue-700
+        ${
+          isDirty
+            ? "text-zinc-100 bg-blue-600 hover:bg-blue-700"
+            : "text-zinc-700 bg-zinc-800"
+        }
         outline-none focus:ring-2 ring-inset ring-zinc-100
-        "
+        `}
       >
-        <span className="leading-[1.2rem] pr-4">Зберегти</span>
+        <span className="leading-[1.2rem] pr-4">{isSubmitting ? "Збереження..." : "Зберегти"}</span>
         <span className="grow"></span>
         <svg fill="currentColor" width="20" height="20" viewBox="0 0 32 32">
           <path d="M27.71,9.29l-5-5A1,1,0,0,0,22,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V10A1,1,0,0,0,27.71,9.29ZM12,6h8v4H12Zm8,20H12V18h8Zm2,0V18a2,2,0,0,0-2-2H12a2,2,0,0,0-2,2v8H6V6h4v4a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2V6.41l4,4V26Z"></path>

@@ -1,6 +1,7 @@
 import prisma from "@/utils/prisma";
 import { procedure, router } from "../trpc";
 import { z } from "zod";
+import { schemaSpectacle } from "@/components/admin/AdminSpectacleForm";
 
 const xprisma = prisma.$extends({
   result: {
@@ -69,5 +70,35 @@ export const spectacleRouter = router({
         href: true,
       },
     });
+  }),
+
+  update: procedure.input(schemaSpectacle).mutation(async ({ input }) => {
+    return await prisma.spectacle.upsert({
+      where: {
+        id: input.id
+      },
+      update: {
+        id: input.id,
+        imageUrl: input.imageUrl,
+        title: input.title,
+        author: input.author,
+        type: input.type,
+        duration: input.duration,
+        description: input.description,
+        forChildren: input.forChildren,
+        published: input.published,
+      },
+      create: {
+        id: input.id,
+        imageUrl: input.imageUrl,
+        title: input.title,
+        author: input.author,
+        type: input.type,
+        duration: input.duration,
+        description: input.description,
+        forChildren: input.forChildren,
+        published: input.published,
+      }
+    })
   }),
 });

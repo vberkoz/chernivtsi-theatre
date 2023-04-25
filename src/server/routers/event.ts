@@ -11,6 +11,12 @@ const xprisma = prisma.$extends({
           return `/admin/event/${event.id}`;
         },
       },
+      eventId: {
+        needs: { id: true },
+        compute(event) {
+          return `${event.id}`;
+        },
+      }
     },
   },
 });
@@ -34,10 +40,10 @@ export const eventRouter = router({
     });
   }),
 
-  list: procedure.query(async () => {
+  adminList: procedure.query(async () => {
     return await xprisma.event.findMany({
       select: {
-        id: true,
+        eventId: true,
         href: true,
         spectacle: {
           select: {

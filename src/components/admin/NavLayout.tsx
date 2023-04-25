@@ -28,18 +28,18 @@ export default function NavLayout({ children }: Props) {
 
       <div className="font-admin text-zinc-100 bg-zinc-900">
         {session ? (
-          <div className="grid grid-cols-4">
-            <div className="flex flex-col border-r border-zinc-800 bg-zinc-900">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            <div className="flex flex-col border-r border-b border-zinc-800 bg-zinc-900">
               <Nav />
               <div className="grow"></div>
               <button
                 onClick={() => signOut({ callbackUrl: "/admin" })}
-                className="px-4 py-3 text-left hover:bg-zinc-800"
+                className="px-4 py-3 mt-14 text-left hover:bg-zinc-800 outline-none focus:ring-2 ring-inset ring-zinc-100"
               >
                 Вийти
               </button>
             </div>
-            <div className="col-span-3 h-screen">{children}</div>
+            {children}
           </div>
         ) : (
           <div className="w-screen h-screen flex items-center">
@@ -51,7 +51,7 @@ export default function NavLayout({ children }: Props) {
               <div className="text-lg mb-4">Адміністративна зона</div>
               <button
                 onClick={() => signIn()}
-                className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700"
+                className="px-4 py-3 bg-zinc-800 hover:bg-zinc-700 outline-none focus:ring-2 ring-inset ring-zinc-100"
               >
                 Ввійти
               </button>

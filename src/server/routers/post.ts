@@ -16,6 +16,20 @@ const xprisma = prisma.$extends({
 });
 
 export const postRouter = router({
+  publicList: procedure.query(async () => {
+    return await xprisma.post.findMany({
+      take: 4,
+      select: {
+        id: true,
+        title: true,
+        type: true,
+        excerpt: true,
+        published: true,
+        href: true,
+      },
+    });
+  }),
+
   list: procedure.query(async () => {
     return await xprisma.post.findMany({
       select: {

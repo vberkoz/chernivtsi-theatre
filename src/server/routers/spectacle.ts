@@ -30,6 +30,8 @@ export const spectacleRouter = router({
         title: true,
         publicHref: true,
         type: true,
+        author: true,
+        imageUrl: true,
       },
     });
   }),

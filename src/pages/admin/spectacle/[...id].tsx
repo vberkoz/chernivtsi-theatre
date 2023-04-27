@@ -19,12 +19,44 @@ export default function Spectacle() {
         {!items.data ? (
           <div className="px-4 py-3">Завантаження...</div>
         ) : (
-          <List items={items.data} />
+          <>
+            <List items={items.data} />
+            <div className="grow"></div>
+            <button
+              onClick={() => router.push("/admin/spectacle/add")}
+              className="px-4 py-3 mt-14 text-left outline-none focus:ring-2 ring-inset ring-zinc-100 flex cursor-pointer text-zinc-100 bg-blue-600 hover:bg-blue-700"
+            >
+              <span className="pr-4">Додати виставу</span>
+              <div className="grow"></div>
+              <svg
+                fill="currentColor"
+                width="28"
+                height="28"
+                viewBox="0 0 32 32"
+              >
+                <path d="M17 15L17 8 15 8 15 15 8 15 8 17 15 17 15 24 17 24 17 17 24 17 24 15z"></path>
+                <title>Add</title>
+              </svg>
+            </button>
+          </>
         )}
       </div>
       <div className="col-span-2 md:h-screen px-4 py-3 overflow-y-scroll">
         {!item.data ? (
-          <div>Завантаження...</div>
+          <AdminSpectacleForm
+            data={{
+              title: "",
+              id: "",
+              imageUrl: "",
+              author: "",
+              type: "",
+              duration: "",
+              description: "",
+              forChildren: false,
+              published: false,
+              events: [],
+            }}
+          />
         ) : (
           <AdminSpectacleForm
             data={{

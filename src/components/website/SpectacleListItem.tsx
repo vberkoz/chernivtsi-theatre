@@ -8,13 +8,14 @@ type Props = {
     publicHref: string;
     author: string;
   };
+  className: string;
 };
 
-export default function SpectacleListItem({ data }: Props) {
+export default function SpectacleListItem({ data, className }: Props) {
   return (
     <Link
       href={data.publicHref}
-      className="p-4 text-center border-b border-zinc-800 h-[50vh] flex flex-col group"
+      className={`p-4 text-center h-[50vh] flex flex-col group ${className}`}
     >
       <div className="font-thin">{data.type}</div>
       <div

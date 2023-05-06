@@ -2,9 +2,12 @@ import { useRouter } from "next/router";
 import { appRouter } from "@/server/routers/_app";
 import { getSession } from "next-auth/react";
 import superjson from "superjson";
+import Image from "next/image";
 
 import Layout from "@/components/website/Layout";
 import SpectacleListItem from "@/components/website/SpectacleListItem";
+
+import volodymyrShnayder from "../../../public/volodymyrShnayder.webp";
 
 type SpectacleType = {
   id: string;
@@ -43,8 +46,8 @@ export default function Spectacle({ data }: Props) {
 
   const menuItems = [
     "Опис вистави",
-    "Галерея",
     "Дійові особи та актори",
+    "Галерея",
     "Розклад",
   ];
 
@@ -78,6 +81,7 @@ export default function Spectacle({ data }: Props) {
                   "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%)",
               }}
             ></div>
+            <div className="self-end p-8 font-thin">{spectacle.forChildren ? "8+" : "16+"}</div>
             <span className="grow"></span>
             <span className="pl-8 pb-4 font-serif text-3xl sm:text-5xl lg:text-7xl z-10">
               {spectacle.title}
@@ -85,7 +89,7 @@ export default function Spectacle({ data }: Props) {
             <span className="pl-8 pb-8 z-10 font-thin">{spectacle.author}</span>
           </div>
 
-          <div className="py-4 font-thin border-y border-zinc-700 bg-black sticky top-[60px] h-[62px] whitespace-nowrap overflow-x-scroll">
+          <div className="py-4 font-thin border-y border-zinc-700 bg-black sticky top-[60px] h-[62px] whitespace-nowrap overflow-x-scroll z-10">
             <div className="px-4 opacity-70">
               {menuItems.map((item, key) => (
                 <span className="px-4" key={key}>
@@ -98,11 +102,11 @@ export default function Spectacle({ data }: Props) {
           <div className="grid grid-cols-3">
             <div className="col-span-3 border-b border-zinc-700 grid grid-cols-3 md:hidden">
               <div className="p-8 font-thin border-b border-zinc-700">Жанр</div>
-              <div className="p-8 font-serif text-3xl border-b border-zinc-700 col-span-2">
+              <div className="p-8 border-b border-zinc-700 col-span-2">
                 {spectacle.type}
               </div>
               <div className="p-8 font-thin">Тривалісь</div>
-              <div className="p-8 font-serif text-3xl col-span-2">
+              <div className="p-8 col-span-2">
                 {spectacle.duration}
               </div>
             </div>
@@ -122,6 +126,90 @@ export default function Spectacle({ data }: Props) {
               <div className="p-8 font-thin">Тривалісь</div>
               <div className="p-8 font-serif text-3xl">
                 {spectacle.duration}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 py-8 border-b border-zinc-700">
+            <div className="font-serif text-3xl md:col-span-2 lg:col-span-3 px-8 pb-4">
+              Дійові особи та актори
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
+              </div>
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
+              </div>
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
+              </div>
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
+              </div>
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
+              </div>
+            </div>
+            <div className="flex items-center px-8 py-4">
+              <Image
+                src={volodymyrShnayder}
+                alt="Володимир Шнайдер"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <div className="ml-4">
+                <div className="font-thin opacity-70">Головний диригент</div>
+                <div className="font-thin">Володимир Шнайдер</div>
               </div>
             </div>
           </div>

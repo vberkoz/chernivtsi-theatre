@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { appRouter } from "@/server/routers/_app";
 import { getSession } from "next-auth/react";
 import superjson from "superjson";
@@ -8,6 +7,10 @@ import Layout from "@/components/website/Layout";
 import SpectacleListItem from "@/components/website/SpectacleListItem";
 
 import volodymyrShnayder from "../../../public/volodymyrShnayder.webp";
+
+import auntyForAMillion from "../../../public/auntyForAMillion.webp";
+import gabrielle from "../../../public/gabrielle.webp";
+import betrayMe from "../../../public/betrayMe.webp";
 
 type SpectacleType = {
   id: string;
@@ -81,7 +84,9 @@ export default function Spectacle({ data }: Props) {
                   "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%)",
               }}
             ></div>
-            <div className="self-end p-8 font-thin">{spectacle.forChildren ? "8+" : "16+"}</div>
+            <div className="self-end p-8 font-thin">
+              {spectacle.forChildren ? "8+" : "16+"}
+            </div>
             <span className="grow"></span>
             <span className="pl-8 pb-4 font-serif text-3xl sm:text-5xl lg:text-7xl z-10">
               {spectacle.title}
@@ -106,9 +111,7 @@ export default function Spectacle({ data }: Props) {
                 {spectacle.type}
               </div>
               <div className="p-8 font-thin">Тривалісь</div>
-              <div className="p-8 col-span-2">
-                {spectacle.duration}
-              </div>
+              <div className="p-8 col-span-2">{spectacle.duration}</div>
             </div>
 
             <div className="col-span-3 md:col-span-2 border-r md:border-b border-zinc-700">
@@ -212,6 +215,17 @@ export default function Spectacle({ data }: Props) {
                 <div className="font-thin">Володимир Шнайдер</div>
               </div>
             </div>
+          </div>
+
+          <div className="flex overflow-auto border-b border-zinc-700">
+            <Image
+              src={auntyForAMillion}
+              alt="auntyForAMillion"
+              width={500}
+              height={500}
+            />
+            <Image src={gabrielle} alt="gabrielle" width={500} height={500} />
+            <Image src={betrayMe} alt="betrayMe" width={500} height={500} />
           </div>
         </div>
       </div>

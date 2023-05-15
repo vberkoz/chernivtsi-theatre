@@ -2,6 +2,8 @@ import { appRouter } from "@/server/routers/_app";
 import { getSession } from "next-auth/react";
 import superjson from "superjson";
 import Image from "next/image";
+import { format } from "date-fns";
+import { tr, uk } from "date-fns/locale";
 
 import Layout from "@/components/website/Layout";
 import SpectacleListItem from "@/components/website/SpectacleListItem";
@@ -223,9 +225,51 @@ export default function Spectacle({ data }: Props) {
               alt="auntyForAMillion"
               width={500}
               height={500}
+              className="border-r border-zinc-700"
             />
-            <Image src={gabrielle} alt="gabrielle" width={500} height={500} />
-            <Image src={betrayMe} alt="betrayMe" width={500} height={500} />
+            <Image
+              src={gabrielle}
+              alt="gabrielle"
+              width={500}
+              height={500}
+              className="border-r border-zinc-700"
+            />
+            <Image
+              src={betrayMe}
+              alt="betrayMe"
+              width={500}
+              height={500}
+              className="border-r border-zinc-700"
+            />
+          </div>
+
+          <div className="overflow-auto">
+            <table className="w-full">
+              <tbody>
+                {spectacle.events.map((event) => (
+                  <tr key={event.id} className="font-thin border-b border-zinc-700">
+                    <td className="p-8">
+                      {format(event.beginningAt, "dd", { locale: uk })}
+                      <span className="capitalize pl-2">
+                        {format(event.beginningAt, "MMMM", { locale: uk })}
+                      </span>
+                    </td>
+
+                    <td className="capitalize p-8">
+                      {format(event.beginningAt, "EEEE", { locale: uk })}
+                    </td>
+                    <td className="p-8">
+                      {format(event.beginningAt, "HH:mm", { locale: uk })}
+                    </td>
+                    <td className="p-8 text-end">
+                      <button className="font-serif font-normal text-zinc-100 uppercase bg-red-900 hover:bg-red-600 rounded-full py-1 px-4 max-w-fit min-w-[220px]">
+                        Придбати Квиток
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

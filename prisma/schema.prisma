@@ -10,7 +10,8 @@ datasource db {
 }
 
 model Post {
-  id        String   @id @unique
+  id        String   @id @default(uuid())
+  handle    String   @unique
   title     String
   type      String
   excerpt   String

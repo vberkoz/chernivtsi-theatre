@@ -150,7 +150,7 @@ async function main() {
   const post = await prisma.post.createMany({
     data: [
       {
-        id: "modern-theater-in-ukraine",
+        handle: "modern-theater-in-ukraine",
         title: "Сучасний театр в Україні",
         type: "Зустріч",
         excerpt: "Хто ми? Звідки? Чи куди йдемо? Сергій Винниченко театральний блогер, автор порталу “Театральна риболовля”. 18 червня, 12:00, фоє театру, 2-й поверх. Вхід вільний.",
@@ -158,7 +158,7 @@ async function main() {
         published: new Date("2020-10-23T17:00:00+03:00"),
       },
       {
-        id: "see-you-in-the-new-theatrical-season",
+        handle: "see-you-in-the-new-theatrical-season",
         title: "До зустрічі у новому театральному сезоні",
         type: "Оголошення",
         excerpt: "Шановні глядачі, до зустрічі у новому 91-му театральному сезоні. З питань екскурсії, звертайтеся за телефоном (0372) 52-46-62.",
@@ -166,7 +166,7 @@ async function main() {
         published: new Date("2020-11-03T17:00:00+03:00"),
       },
       {
-        id: "theatrical-event-white-bird-of-bukovina",
+        handle: "theatrical-event-white-bird-of-bukovina",
         title: "Театральна імпреза “Білий птах Буковини”",
         type: "Зустріч",
         excerpt: "15 червня, 11:00, театральна імпреза до 80-ї річниці з дня народження видатного українського кіномитця Івана Миколайчука. Театр просто неба в музеї-садибі села Чорториї. Вхід вільний.",
@@ -174,7 +174,7 @@ async function main() {
         published: new Date("2020-11-17T17:00:00+03:00"),
       },
       {
-        id: "vidmina-vistav-u-zhovtni-2022",
+        handle: "vidmina-vistav-u-zhovtni-2022",
         title: "Відміна вистав у жовтні 2022",
         type: "Оголошення",
         excerpt: "Шановні глядачі, повідомляємо про зміни в репертуарі на жовтень 2022 року, вистави з 7 по 10 жовтня - скасовано. Приносимо вибачання за незручності і дякуємо за розуміння.",
@@ -214,7 +214,7 @@ async function main() {
       {
         id: "dashboard",
         title: "Головна",
-        href: "/admin",
+        href: "/admin/dashboard",
       },
       {
         id: "event",

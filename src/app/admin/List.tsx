@@ -7,7 +7,7 @@ type Props = {
   listItems: {
     handle: string;
     title: string;
-    href: string;
+    adminUrl: string;
   }[];
 };
 
@@ -17,11 +17,11 @@ export default function List({ listItems }: Props) {
     <>
       {listItems.map((listItem) => (
         <Link
-          href={listItem.href}
+          href={listItem.adminUrl}
           className={`
-            px-4 py-3 hover:bg-zinc-700 
+            px-4 py-3 hover:bg-zinc-700 truncate
             outline-none focus:ring-2 ring-inset ring-zinc-100 
-            ${pathname.startsWith(listItem.href) && "bg-zinc-800"}
+            ${pathname.startsWith(listItem.adminUrl) && "bg-zinc-800"}
           `}
           key={listItem.handle}
         >

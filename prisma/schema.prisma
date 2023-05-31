@@ -12,6 +12,8 @@ datasource db {
 model Post {
   id        String   @id @default(uuid())
   handle    String   @unique
+  publicUrl String   @unique
+  adminUrl  String   @unique
   title     String
   type      String
   excerpt   String

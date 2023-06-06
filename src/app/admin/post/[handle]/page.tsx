@@ -1,38 +1,37 @@
 import prisma from "@/utils/prisma";
+import PostForm from "./PostForm";
 
-const xprisma = prisma.$extends({
-  result: {
-    post: {
-      href: {
-        needs: { id: true },
-        compute(post) {
-          return `/admin/post/${post.id}`;
-        },
-      },
-    },
-  },
-});
-
-const getPostByHandle = async (handle: string) =>
-  await xprisma.post.findUnique({
+export default async function Page({ params }: { params: { handle: string } }) {
+  const post = await prisma.post.findUnique({
     where: {
-      handle: handle,
+      handle: params.handle,
     },
     select: {
       handle: true,
       title: true,
-      href: true,
+      adminUrl: true,
     },
   });
 
-export default async function Page({ params }: { params: { handle: string } }) {
-  const post = await getPostByHandle(params.handle);
   return (
     <div className="col-span-2 h-screen px-4 py-3">
-      <>
-        <div className="text-2xl">{post?.title}</div>
-        <div>{post?.handle}</div>
-      </>
+      {post ? (
+        <PostForm
+          data={{
+            handle: post?.handle,
+            title: post?.title,
+            adminUrl: post?.adminUrl,
+          }}
+        />
+      ) : (
+        <PostForm
+          data={{
+            handle: "",
+            title: "",
+            adminUrl: "",
+          }}
+        />
+      )}
     </div>
   );
 }

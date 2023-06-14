@@ -10,18 +10,15 @@ export default async function Page({ params }: { params: { handle: string } }) {
       handle: true,
       title: true,
       adminUrl: true,
+      publicUrl: true,
     },
   });
 
   return (
-    <div className="col-span-2 h-screen px-4 py-3">
+    <div className="col-span-2 h-screen px-4 py-3 overflow-y-scroll">
       {post ? (
         <PostForm
-          data={{
-            handle: post?.handle,
-            title: post?.title,
-            adminUrl: post?.adminUrl,
-          }}
+          data={post}
         />
       ) : (
         <PostForm
@@ -29,6 +26,7 @@ export default async function Page({ params }: { params: { handle: string } }) {
             handle: "",
             title: "",
             adminUrl: "",
+            publicUrl: "",
           }}
         />
       )}

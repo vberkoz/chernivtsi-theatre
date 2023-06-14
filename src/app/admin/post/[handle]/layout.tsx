@@ -21,7 +21,7 @@ export default async function RootLayout({
         <List listItems={JSON.parse(JSON.stringify(posts))} />
         <div className="grow"></div>
         <Link
-          href="/admin/spectacle/add"
+          href="/admin/post/add"
           className="
             px-4 py-3 mt-14 
             flex cursor-pointer 

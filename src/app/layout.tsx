@@ -17,6 +17,7 @@ const serif = Noto_Serif_Display({
 });
 
 import { IBM_Plex_Sans } from "next/font/google";
+import Menu from "./Menu";
 const admin = IBM_Plex_Sans({
   subsets: ["latin", "cyrillic"],
   style: ["normal", "italic"],
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body
         className={`${sans.variable} ${serif.variable} ${admin.variable} font-serif`}
       >
+        <Menu />
         {children}
       </body>
     </html>

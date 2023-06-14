@@ -221,32 +221,32 @@ async function main() {
     data: [
       {
         id: "dashboard",
-        title: "Головна",
+        title: "Dashboard",
         href: "/admin/dashboard",
       },
       {
         id: "event",
-        title: "Афіша",
+        title: "Events",
         href: "/admin/event/1",
       },
       {
         id: "post",
-        title: "Новини",
+        title: "Posts",
         href: "/admin/post/modern-theater-in-ukraine",
       },
       {
         id: "spectacle",
-        title: "Вистави",
+        title: "Spectacles",
         href: "/admin/spectacle/gabriel",
       },
       {
         id: "vacancy",
-        title: "Вакансії",
+        title: "Vacancies",
         href: "/admin/vacancy/choirmaster",
       },
       {
         id: "worker",
-        title: "Працівники",
+        title: "Workers",
         href: "/admin/worker/andrij-ciganok",
       },
     ],
